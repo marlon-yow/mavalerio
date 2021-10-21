@@ -1,0 +1,32 @@
+/*!
+* @Autor Mavalerio https://orcid.org/0000-0003-2770-0624
+* @version 0.0.0.2 [2020-may-26]
+* @copyleft GPLv3
+*/
+.do-print{ display: none; }
+
+@media print {
+	/*Remover Barra superiora*/
+	#topologo{ display: none; }
+	.navbar-fixed-top{ display: none; }
+	/*Classe de n�o impress�o*/
+	.no-print{ display: none !important; }
+	.do-print{ display: table !important;}
+
+	/*N�o imprimir links nem abrevia��es*/
+	a[href]:after { content: none !important; }
+	abbr[title]:after { content: none !important; }
+
+	/*n�o mostrar op��o de edi��o*/
+	.icon-edit { display: none !important; }
+	.fa-edit { display: none !important; }
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

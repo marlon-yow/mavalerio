@@ -1,0 +1,142 @@
+/*!
+* @Autor Mavalerio https://orcid.org/0000-0003-2770-0624
+* @version 0.0.0.3 [2021-jul-22]
+* @copyleft GPLv3
+*/
+
+/* Override browser default */
+*{ font-family:Tahoma,Verdana,Serif;}
+
+/* Override Bootstrap */
+.fa-20px{font-size: 20px;}
+.dropdown-menu{position:fixed !important;}
+select {min-height: 25px;    padding-top: 1px;    border-top-width: 2px;    border-left-width: 2px;    border-right-width: 2px;    border-bottom-width: 2px;}
+.btn-inverse{    color: #333;    background-color: #fff;    border-color: #ccc;}
+/**/
+
+span.link{font-weight:bold;}
+#userMenu{top:40px;}
+
+
+/* Espec�ficas */
+#benchmark{position: fixed;left: 0px;top: 0px;font-size: 0.6em;background-color: #F9F9F9;padding: 3px;border: #999 solid 1px;}
+#container {min-height:100%;position: relative;}
+#dvRodape {font-size:11px;font-weight:bold;text-align:center;}
+#dvRodape, #meio{margin: 20px auto;width: 775px;}
+#floatfoot {position: fixed;bottom: 0px;width: 100%;
+    background: #ececec;border-top: 1px solid #cccccc;
+    height: 38px;left: 0;
+}
+#header{height: 30px;padding-bottom: 0px;}
+#logo{margin-top: 10px;text-align: center;margin:0 auto;}
+#menu{position: absolute;z-index: 200;width: 100%;}
+#message{text-align: center;color: red;font-weight: bold;font-size: 1.0em;}
+#nome_sistema{position: absolute;right: 10px;top: 2px;font-size: 0.8em;font-weight: bold;color: white;text-shadow: rgba(0,0,0,1) 1px 1px 1px;}
+#nome_usuario{margin: 0px auto;width: 600px;padding-bottom: 0px;margin-top: -52px;}
+#omenu a{cursor: pointer;}
+#pagination{ padding-left: 30px;padding-right: 30px;padding-top: 3px;font-size: 14px;margin: 15px auto;width: 500px;border-top: #CCC dashed 1px;}
+#pagination img{vertical-align: bottom;}
+#pagination a{color: #444;font-weight: bold;}
+#pagination a:hover{color: #000;text-shadow: rgba(0,0,0,.5) 2px 2px 1px;}
+#voltar{position: absolute;bottom: 40px;text-align: center;width: 100%;left: 0px;font-weight: bold;}
+#waitScreen{position:absolute;left: 50%;top: 40%;margin-top: -50px;margin-left: -250px;width: 500px;text-align: center;padding-bottom: 50px;padding-top: 50px;z-index:5;display:none;background-color: #CFCFCF;font-size: 1.5em;border: 5px #B0B0B0 solid;border-bottom: 5px #606060 solid;border-right: 5px #606060 solid;filter:opacity(alpha=90); /* para o IE */-moz-opacity:0.9; /* para o FireFox */opacity:0.9; /* para o outros Navegadores */}
+.borda_tabela{padding: 25px 50px 25px 50px;border: #DDD solid 1px;background-color: #FAFAFA;border-radius: 7px;margin-top: 10px;margin-bottom: 10px;box-shadow: rgba(0,0,0,.5) 3px 3px 5px;}
+.borda_tabela  input[type="submit"]{margin-top:20px;}
+.campo_erro {background-color: #df4a4a;}
+.fonte_10{font-size: 10px;color: white;font-weight: bolder;text-shadow: rgba(0,0,0,1) 1px 1px 1px;}
+.form-fieldset legend{font-size: 12px !important;font-weight: bold !important;text-align: left !important;}
+.fundo_tabela {padding: 25px;border: #DDD solid 1px;background-color: #FAFAFA;margin-top: 10px;margin-bottom: 5px;box-shadow: rgba(0,0,0,.3) 3px 3px 2px;}
+.fundo_tabela  input[type="submit"]{margin-top:20px;}
+.highlight:hover{background-color: #D6D6D6;cursor: default;}
+.menu_listar{margin-top: -3px;margin-bottom: -15px;color: #FFF;font-weight: bold;text-shadow: rgba(0,0,0,.8) 1px 1px 1px;-moz-user-select: none;-webkit-user-select: none; text-align: center;padding:10px;margin: 0 auto;}
+.menu_listar td{background-color: #7f7f7f;font-size: 11px;text-decoration: none; border: none;padding: 5px;width: 150px;cursor: pointer;}
+.menu_listar td:hover{ color: #CCC;font-size: 11px;}
+.menu_listar th{background-color: #505050;color: #EEE;font-size: 11px;border: none;padding: 5px;width: 150px;box-shadow: rgba(0,0,0,.5) 0px 3px 3px;cursor: default;}
+.tabela_filtro th{text-align: left;font-size: 8pt;font-weight: normal;border: none;padding: 0px 0px 0px 5px;margin: 0;}
+.tabela_filtro td{text-align: left;border: none;padding: 0px 0px 0px 5px;}
+.tabela_login{border: #DDD solid 1px;padding: 50px 80px 50px 80px;margin: 50px auto;background-color: #FAFAFA;box-shadow: rgba(0,0,0,.5) 0px 0px 5px;}
+.tabela_login  input[type="submit"]{width: 80px;}
+.tituloTopo {font-family:Arial,Verdana,Tahoma;font-size:14px;font-weight:bold;}
+.UpperCase{text-transform: uppercase;}
+
+ul#navmenu {width: 750px;}
+.navbar-dark .btn-secondary {color: #fff !important;
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+}
+
+table.tbfixie{ height: 70%;}
+table.tbfixie td{ vertical-align: top;}
+
+.fluff{color: #FF0000;}
+.cinza{	background: #EEEEEE;}
+/******************
+Groupbox
+********************/
+.groupbox{
+    font-size: 12px; margin-bottom: 10px;
+    border-top: 1px solid;border-bottom: 2px solid;border-left: 1px solid;border-right: 2px solid;
+    box-shadow: 3px 3px 4px #C3C3C3;
+}
+.conjunto{display:table;float: left;}
+.rotulo{font-weight:bold;float:left; width:150px; text-align:right;padding:5px; min-height:30px}
+.campo{min-width:150px;width:auto;overflow:hidden;float:left;min-height:25px;text-align:left;}
+.divlinha{width:100%;display:table;}
+.campo input[type=text]{width: 150px;margin-top: 0;height: 20px;}
+.campo select{height: 25px;}
+
+/************************
+Tabela
+***********************/
+.listall tr:nth-child(even){background:#c8c8c8;}
+.listall tr:nth-child(odd) {background:#FFFFFF;}
+.listall tr:hover{color: #FF0000;}
+.listall tr:nth-child(even) td{padding: 0 8px;border: 1px solid #ededed;}
+.listall tr:nth-child(odd) td{padding: 0 8px;border: 1px solid #ededed;}
+.listall{border-spacing:0;border-collapse:collapse;}
+.listall th{color: #FFFFFF;background:  #000000;padding: 0 8px;}
+.listall th a{color: #FFFFFF;}
+.listall a{padding: 0 8px;}
+.listall .image a img {margin:1px;width:20px;}
+.listall tr td{ padding: 0 8px; }
+
+tr.par{background:#c8c8c8;}
+tr.par:hover{color: #FF0000;}
+tr.impar{background:#FFFFFF;}
+tr.impar:hover{color: #FF0000;}
+tr.par td{padding: 0 8px;}
+tr.impar td{padding: 0 8px;}
+/*************************/
+#warning{ width:100%;position:fixed;top:0px;left:0px;display:none;z-index: 1030;}
+#warning div{background:#7ACCFF;display:table;padding: 5px 10px;}
+#warning .verde {background:#CDFFCF;}
+#warning .amarelo {background:#FFFDBA;}
+#warning .vermelho {background:#FFCDCD;}
+#divloading{width:100%;position:fixed;top:0px;left:0px;display:none;  height: 50px;}
+#divloading div{background:#fff6dd;display:table;padding:5px;}
+/*************************/
+
+/******************
+Condutor
+*********************/
+.tbcondutor h3{margin:3px 0 0 0;}
+
+.condutor{border:1px solid;width: 600px;}
+.condutor  input[type=text]{width: 100%;}
+.condutor  select{width: 100%;}
+.condutor  th{font-weight: bold;border: 1px solid;
+	font-size: 12px;margin: 0 5px;width: 135px;
+	padding: 2px 0;}
+.condutor td{border: 1px solid;font-size: 12px;min-width: 40px;}
+.condutor i{margin: 3px 0 0 5px;float:left;}
+
+.condutor2 label{float:right;display:block;font-size: 12px;
+	font-weight: bold;padding: 2px 5px;}
+.condutor2 .div2{float:left;width:147px;height: 25px;}
+.div2 input[type=text]{width: 100%;}
+.condutor2 label{float:right;display:block;font-size: 12px;font-weight: bold;padding: 2px 5px;}
+/************
+RODAP�
+************/
+#footer_content {margin:0 auto;border-top:#AAA 1px dashed;padding:0px;width:65%;height:30px;}
+#footer_texto {float: right;min-width: 275px;height: 28px;padding-top: 2px;font-size: 10px;color: #666;}
