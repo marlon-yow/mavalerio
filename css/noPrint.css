@@ -9,15 +9,15 @@
 	/*Remover Barra superiora*/
 	#topologo{ display: none; }
 	.navbar-fixed-top{ display: none; }
-	/*Classe de n�o impress�o*/
+	/*Classe de não impressão*/
 	.no-print{ display: none !important; }
 	.do-print{ display: table !important;}
 
-	/*N�o imprimir links nem abrevia��es*/
+	/*Não imprimir links nem abreviações*/
 	a[href]:after { content: none !important; }
 	abbr[title]:after { content: none !important; }
 
-	/*n�o mostrar op��o de edi��o*/
+	/*não mostrar opção de edição*/
 	.icon-edit { display: none !important; }
 	.fa-edit { display: none !important; }
 }

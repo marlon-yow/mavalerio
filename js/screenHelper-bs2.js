@@ -4,7 +4,7 @@
 * @copyleft GPLv3
 */
     /**
-	*	Funcao que abre uma janela modal na tela com bot�o de OK
+	*	Funcao que abre uma janela modal na tela com botão de OK
 	*	@parameter mixed titulo
 	*	@parameter mixed oQueVaiDentroDaJanela texto/html/objJquery
 	*/
@@ -25,7 +25,7 @@
 	}
 
 	/**
-	*	Fun��o que abre uma tela modal com a confirma��o de exclus�o de um item
+	*	Função que abre uma tela modal com a confirmação de exclusão de um item
 	*	@parameter mixed idDoItem
 	*	@parameter mixed textoNomeDoElemento
 	*	@parameter mixed elemento
@@ -38,11 +38,11 @@
             $('<button>').addClass('close').attr('data-dismiss',"modal").attr('aria-hidden',"true").html("&times;")
         )
         .append(
-            $('<h3>').html("Aviso de Exclus�o")
+            $('<h3>').html("Aviso de Exclusão")
         );
 
         var corpo = $('<div>').addClass('modal-body').html("<label>Tem certeza que deseja excluir "+txt+"?<br>"+
-            "Essa opera��o n�o pode ser desfeita.</label>");
+            "Essa operação não pode ser desfeita.</label>");
 
 
         if(obj){
@@ -53,7 +53,7 @@
 
         var rodape = $('<div>').addClass('modal-footer')
         .append(
-            $('<button>').attr('data-dismiss',"modal").addClass('btn btn-primary').html('N�o')
+            $('<button>').attr('data-dismiss',"modal").addClass('btn btn-primary').html('Não')
         )
         .append($('<a/>').attr('href', lnk).addClass('btn btn-primary').html("Sim"));
 
@@ -62,7 +62,7 @@
     }
 
     /**
-    *	Fun��o que abre janela modal com 1 e 2 bot�es
+    *	Função que abre janela modal com 1 e 2 botões
     * 	@parameter mixed titulo
     * 	@parameter mixed conteudoDaJanela texto/html/objJquery
     * 	@parameter mixed textoDoBotao (opcional)
@@ -95,7 +95,7 @@
 	}
 
 	/**
-    *	Fun��o que fecha janela modal com 1 e 2 bot�es
+    *	Função que fecha janela modal com 1 e 2 botões
     */
 	function divmodalHide(){
         $('#divmodal').modal('hide');
@@ -103,7 +103,7 @@
 	}
 
 	/**
-    *	Fun��o que insere texto de rodap� na janela modal com 1 e 2 bot�es (requere res/modal.php)
+    *	Função que insere texto de rodapé na janela modal com 1 e 2 botões (requere res/modal.php)
     * 	@parameter mixed texto/html/objJquery
     */
 	function divmodalMessage(txt){
@@ -111,7 +111,7 @@
 	}
 
     /**
-    *	Fun��o que cria pagina��o
+    *	Função que cria paginação
     * 	@parameter int paginaAtual
     * 	@parameter int quantidadeTotalDeRegistros
     * 	@parameter int quantidadeDeRegistrosPorPagina

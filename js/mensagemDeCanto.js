@@ -3,7 +3,7 @@
 * @version 0.0.0.2 [2020-may-26]
 * @copyleft GPLv3
 */
-    /** Fun��o antiga que apresenta um aviso em tela (retrocompatibilidade para toast)
+    /** Função antiga que apresenta um aviso em tela (retrocompatibilidade para toast)
 	*	@parameter mixed textoAApresentar
 	*	@parameter mixed corDoAviso (verde/amarelo/vermelho)
 	*/

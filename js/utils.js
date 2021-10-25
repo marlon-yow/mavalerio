@@ -9,7 +9,7 @@
 	*/
 	function toggle(obj) {$('#'+obj).slideToggle();}
 
-    /** Func�o que mostra e esconde menu dropdown
+    /** Funcão que mostra e esconde menu dropdown
 	*	@parameter html_object objetoReferencia (this)
 	*	@parameter mixed idDoMenu
 	*/
@@ -23,7 +23,7 @@
 		showMenu(obj,divmenu);
     }
 
-    /** Fun��o que redimensiona textarea para o conte�do - NOVA
+    /** Função que redimensiona textarea para o conteúdo - NOVA
 	*	@parameter htmlObject (this)
 	*/
 	function sz(t) {
@@ -51,12 +51,12 @@
         maxlength = o.attr('maxlength');
         atualLenth = o.val().length;
         if(atualLenth >= maxlength){
-            alert('Acabou o espa�o!')
+            alert('Acabou o espaço!')
         }
         return (maxlength-atualLenth);
     }
 
-	/** Funcao que limpa a tabela conservando a linha de cabe�alho
+	/** Funcao que limpa a tabela conservando a linha de cabeçalho
 	*	@parameter mixed idTabela
     *   @parameter int quantidade de linhas a manter
     */
@@ -77,8 +77,8 @@
         }
     }
 
-    /** Fun��o que impede a p�gina de ser fechada quando algum campo do formul�rio � modificado
-    * confirma��o via browser api request
+    /** Função que impede a página de ser fechada quando algum campo do formulário é modificado
+    * confirmação via browser api request
     */
     var canClose = true;
     function impedirFechamentoFormulario(){
@@ -90,7 +90,7 @@
     }
     /**/
 
-    /** Fun��o impede que formul�rio seja submetido quando bate enter
+    /** Função impede que formulário seja submetido quando bate enter
     */
     function trocaEnterPorTab(){
         $('body').on('keydown', 'input, select, textarea', function(e) {
@@ -128,7 +128,7 @@
     }
     /**/
 
-    /** Fun��o que bloqueia o formulario inteiro para somente leitura
+    /** Função que bloqueia o formulario inteiro para somente leitura
     */
    function formularioSomenteLeitura(){
        //campos normais
@@ -146,7 +146,7 @@
     /**************/
 
     /**
-    *	Fun��o que valida CPF
+    *	Função que valida CPF
     * 	@parameter mixed cpf (com ou sem mascara)
     *	@returns boolean (true para valido)
     */
@@ -161,18 +161,18 @@
 	function ValidarCPFCNPJ(doc){
 	    return ( doc.isCPF() || doc.isCNPJ() );
 	}
-
+	
         function validarNome(nome){
             if(!nome) return false;
             if(nome.length < 5) return false;
             if(nome.search(new RegExp(" ", "i")) == -1) return false;
             return true;
         }
-
+    
 	/***************************************
     * String.isCPF Function v1.0
     * Autor: Carlos R. L. Rodrigues
-    Como Chamar a fun��o: String.isCPF()
+    Como Chamar a função: String.isCPF()
     Retorna: True ou False
     ***************************************/
     String.prototype.isCPF = function(){
@@ -258,7 +258,7 @@
     /***************************************
     * String.isCNPJ Function v1.0
     * Autor: Carlos R. L. Rodrigues
-    Como Chamar a fun��o: String.isCNPJ()
+    Como Chamar a função: String.isCNPJ()
     Retorna: True ou False
     ***************************************/
     String.prototype.isCNPJ = function(){
@@ -283,8 +283,8 @@
     /*** TEXTO **/
     /**************/
 
-    /** Funcao que retorna uma string cortada at� a primeira occ de
-     *  um caracter expecificado ou espa�o se n�o espacificar
+    /** Funcao que retorna uma string cortada até a primeira occ de
+     *  um caracter expecificado ou espaço se não espacificar
      * @param mixed
      * @paramOptional char
      * @return mixed
@@ -301,7 +301,7 @@
     /*** NUMEROS **/
     /**************/
 
-    /** Fun��o que corta os numeros finais de um float
+    /** Função que corta os numeros finais de um float
     * 	@parameter mixed floatACortar
     * 	@parameter int quantidadeDeCasas
     * 	@returns mixed numeroTruncado
@@ -315,7 +315,7 @@
         return a2;
     }
 
-    /** Funcao preenche com zeros � esquerda o numero
+    /** Funcao preenche com zeros à esquerda o numero
 	*	@parameter mixed numero
 	*	@parameter int casas
 	*	@returns mixed
@@ -328,7 +328,7 @@
 		return str;
 	}
 
-    /** Fun��o que evita que o usu�rio digite v�rgula em campo num�rico
+    /** Função que evita que o usuário digite vírgula em campo numérico
     *   @parameter this (usar no onkeyup)
     */
     function preventComa(obj){
@@ -337,13 +337,13 @@
         obj.setSelectionRange(cuRsoR,cuRsoR);
     }
 
-    /** Fun��o que apresenta valores monet�rios na m�scara correta
+    /** Função que apresenta valores monetários na máscara correta
     */
     function moneyMask(a){
         return "R$ "+ a.toFixed(2);
     }
 
-    /** Fun��o que remove caracteres n�o num�ricos da string
+    /** Função que remove caracteres não numéricos da string
     */
     function somenteNumeros(a){
         var b = a.replace(/[^\d]/g,'');
@@ -354,7 +354,7 @@
     /*** OUTROS **/
     /**************/
 
-    /** Funcao remove caracter n�o Letras da string
+    /** Funcao remove caracter não Letras da string
     */
     function somenteLetras(a){
         if(!a) return "";
@@ -376,7 +376,7 @@
         return jQuery.extend(true, {}, obj);
     }
 
-    /* fun�ao de ping para keepalive*/
+    /* funçao de ping para keepalive*/
     function tmout(){
         $.post('/ping.php',function(data) {
             $('#tmout').html(data);
@@ -384,7 +384,7 @@
         setTimeout(function() {tmout();}, 30000);
     }
 
-/* Inicializa��o de bibliotecas de m�sca de campo e desativa cache do jqery*/
+/* Inicialização de bibliotecas de másca de campo e desativa cache do jqery*/
 (function($){
     $(function(){
         if($('input:text').setMask) $('input:text').setMask();
