@@ -21,7 +21,7 @@ class BlackListDoc{
 
     public function testarBloqueado($doc,$max=5){
         $this->carregarLista();
-        if(!$this->lista[$doc] or sizeof($this->lista[$doc]) <= $max){
+        if(!$this->lista[$doc] or sizeof($this->lista[$doc]) < $max){
             return false;
         }
         return true;

@@ -6,7 +6,7 @@
 */
 
 Class FUN{
-    private $DBG = true;
+    private $DBG = false;
     public function setDBG($d){
         if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
         $this->DBG = $d;
