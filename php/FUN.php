@@ -209,7 +209,8 @@ Class FUN{
 		"12" => "Dezembro",
     );
 
-    public function validaHora($hr){
+    public function validaHora($hr){ return $this->validarHora($hr); }
+    public function validarHora($hr){
         if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
         if(!$hr) return false;
         $_arr = explode(" ", $hr);
@@ -256,36 +257,37 @@ Class FUN{
         }
 
         $horaFinal = $this->pad($h,2).":".$this->pad($m,2).":".$this->pad($s,2);
-        if($this->validaHora($horaFinal)){
+        if($this->validarHora($horaFinal)){
             return $horaFinal;
         }
 
         return $failSafe;
     }
 
-    public function validaData($dt){
+    public function validaData($dt){ return $this->validarData($dt);}
+    public function validarData($dt){
         if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
 
         $_arr = explode(" ", $dt);
-        if($this->DBG){ echo "FUN->validaData: explode: ".print_r($_arr,1)." <br>\n"; }
+        if($this->DBG){ echo "FUN->validarData: explode: ".print_r($_arr,1)." <br>\n"; }
         $data = $_arr[0];
-        if($this->DBG){ echo "FUN->validaData: data: $data  <br>\n";}
+        if($this->DBG){ echo "FUN->validarData: data: $data  <br>\n";}
 
         if(!strpos($dt, "/")){
-            if($this->DBG){ echo "FUN->validaData:  nao tem barra  <br>\n";}
+            if($this->DBG){ echo "FUN->validarData:  nao tem barra  <br>\n";}
             if(!strpos($dt, "-")){
-                if($this->DBG){ echo "FUN->validaData:  nao tem traço  <br>\n";}
+                if($this->DBG){ echo "FUN->validarData:  nao tem traço  <br>\n";}
                 return  false; //procura a barra
             }else{
-                if($this->DBG){ echo "FUN->validaData:  trocar traço por barra  <br>\n";}
+                if($this->DBG){ echo "FUN->validarData:  trocar traço por barra  <br>\n";}
                 $data = implode('/',array_reverse(explode('-',$data)));
             }
         }
 
 
-        if($this->DBG){ echo "FUN->validaData: data: $data  <br>\n";}
+        if($this->DBG){ echo "FUN->validarData: data: $data  <br>\n";}
         $_arr2 = explode("/", $data);
-        if($this->DBG){ echo "FUN->validaData: explode: ".print_r($_arr2,1)."  <br>\n"; }
+        if($this->DBG){ echo "FUN->validarData: explode: ".print_r($_arr2,1)."  <br>\n"; }
 
         $dd = intval($_arr2[0]);
         $mm = intval($_arr2[1]);
@@ -403,7 +405,7 @@ Class FUN{
             }
 
             $dataFinal = $y."-".$this->pad($m,2)."-".$this->pad($d,2);
-            if($this->validaData($dataFinal)){
+            if($this->validarData($dataFinal)){
                 return $dataFinal;
             }
 
@@ -676,31 +678,35 @@ Class FUN{
     /*VALIDACOES*/
     /************/
 
-    function validaEmail($value){
+    function validaEmail($value){ return $this->validarEmail($value); }
+    function validarEmail($value){
         if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
         return filter_var($value, FILTER_VALIDATE_EMAIL);
     }
 
-    function validaNome($nome){
+    function validaNome($nome){ return $this->validarNome($nome); }
+    function validarNome($nome){
         if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
         if(!$nome) return false;
         if(sizeof(explode(' ',$nome)) < 2) return false;
         return true;
     }
 
-    function validaCPFCNPJ($str=''){
+    function validaCPFCNPJ($str=''){ return $this->validarCPFCNPJ($str='');}
+    function validarCPFCNPJ($str=''){
         if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
-        if($this->validaCPF($str)) return true;
-        if($this->validaCNPJ($str)) return true;
+        if($this->validarCPF($str)) return true;
+        if($this->validarCNPJ($str)) return true;
         return false;
     }
 
     /**
-     * validaCPF
+     * validarCPF
      * @param  [mixed] $cpf CPF com ou sem mascara
      * @return [bool] true para válido
      */
-    function validaCPF($cpf) {
+    function validaCPF($cpf) { return $this->validarCPF($cpf); }
+    function validarCPF($cpf) {
         if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
         $DBG = false;
         if($DBG) echo $cpf."<br>";
@@ -739,6 +745,7 @@ Class FUN{
      * @param  [mixed] $cnpj CNPJ com ou sem mascara
      * @return [bool]  true para valido
      */
+    function validaCNPJ($cnpj){ return $this->validarCNPJ($cnpj); }
     function validarCNPJ($cnpj){
         if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
 
