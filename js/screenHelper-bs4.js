@@ -1,6 +1,6 @@
 /*!
 * @Autor Mavalerio https://orcid.org/0000-0003-2770-0624
-* @version 0.0.0.3 [2021-set-24]
+* @version 0.0.0.4 [2021-nov-04]
 * @copyleft GPLv3
 */
 
@@ -57,7 +57,8 @@
 
         var _footer = $('<div>')
             .append( $('<button>').attr('data-dismiss',"modal").addClass('btn btn-primary').html('Não') )
-            .append($('<a/>').attr('href', obj+'_excluir.php?id='+id).addClass('btn btn-primary').html("Sim"));
+            .append(' ')
+            .append($('<a/>').attr('href', obj+'_excluir.php?id='+id).addClass('btn btn-danger').html("Sim"));
 
         genericModal(_titulo,_recheio,_footer);
     }
