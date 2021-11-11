@@ -59,28 +59,35 @@ Class FUN{
     	return preg_replace('/ +/', ' ', $var);
     }
 
-    public function somenteLetras($str){
+    public function somenteLetras($str,$replaceWith=""){
         if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
     	//return preg_replace("[^A-Za-z ]", "", $str);
-    	return preg_replace("/[^A-Za-záàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/","",$str);
+    	return preg_replace("/[^A-Za-záàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/",$replaceWith,$str);
     }
 
-    public function somenteLetrasEEspacos($str){
+    public function somenteLetrasEEspacos($str,$replaceWith=""){
         if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
     	//return preg_replace("[^A-Za-z ]", "", $str);
-    	return preg_replace("/[^A-Za-z[:space:]áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/","",$str);
+    	return preg_replace("/[^A-Za-z[:space:]áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/",$replaceWith,$str);
     }
 
-    public function somenteLetrasENumeros($str){
+
+    public function somenteLetrasENumeros($str,$replaceWith=""){
         if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
         if($this->DBG) echo "FUN->somenteLetrasENumeros($str) <br>\n";
-        return preg_replace('/[^a-zA-Z0-9áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/', "", $str);
+        return preg_replace('/[^a-zA-Z0-9áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/', $replaceWith, $str);
+    }
+
+    public function somenteLetrasNumerosEspacosEChars($str,$replaceWith=""){
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG) echo "FUN->somenteLetrasNumerosEspacosEChars($str) <br>\n";
+        return preg_replace("/[^A-Za-z0-9[:space:]áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ,.-]/",$replaceWith,$str);
     }
 
     public function tirarAcentos($string){
         if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
         if($this->DBG) echo "FUN->tirarAcentos($string) <br>\n";
-        return preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$string);
+        return preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/","/(Ç)/","/(ç)/"),explode(" ","a A e E i I o O u U n N C c"),$string);
     }
 
     /**NUMEROS**/
