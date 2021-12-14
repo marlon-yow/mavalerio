@@ -1,6 +1,6 @@
-/*!
+/*! ---UTF-8---
 * @Autor Mavalerio https://orcid.org/0000-0003-2770-0624
-* @version 0.0.0.3 [2021-jul-22]
+* @version 0.0.0.4 [2021-nov-12]
 * @copyleft GPLv3
 */
 
@@ -25,7 +25,7 @@ span.link{font-weight:bold;}
 #dvRodape, #meio{margin: 20px auto;width: 775px;}
 #floatfoot {position: fixed;bottom: 0px;width: 100%;
     background: #ececec;border-top: 1px solid #cccccc;
-    height: 38px;left: 0;
+    height: 38px;left: 0; z-index: 1;
 }
 #header{height: 30px;padding-bottom: 0px;}
 #logo{margin-top: 10px;text-align: center;margin:0 auto;}
@@ -65,9 +65,6 @@ ul#navmenu {width: 750px;}
     border-color: #6c757d !important;
 }
 
-table.tbfixie{ height: 70%;}
-table.tbfixie td{ vertical-align: top;}
-
 .fluff{color: #FF0000;}
 .cinza{	background: #EEEEEE;}
 /******************
@@ -85,27 +82,6 @@ Groupbox
 .campo input[type=text]{width: 150px;margin-top: 0;height: 20px;}
 .campo select{height: 25px;}
 
-/************************
-Tabela
-***********************/
-.listall tr:nth-child(even){background:#c8c8c8;}
-.listall tr:nth-child(odd) {background:#FFFFFF;}
-.listall tr:hover{color: #FF0000;}
-.listall tr:nth-child(even) td{padding: 0 8px;border: 1px solid #ededed;}
-.listall tr:nth-child(odd) td{padding: 0 8px;border: 1px solid #ededed;}
-.listall{border-spacing:0;border-collapse:collapse;}
-.listall th{color: #FFFFFF;background:  #000000;padding: 0 8px;}
-.listall th a{color: #FFFFFF;}
-.listall a{padding: 0 8px;}
-.listall .image a img {margin:1px;width:20px;}
-.listall tr td{ padding: 0 8px; }
-
-tr.par{background:#c8c8c8;}
-tr.par:hover{color: #FF0000;}
-tr.impar{background:#FFFFFF;}
-tr.impar:hover{color: #FF0000;}
-tr.par td{padding: 0 8px;}
-tr.impar td{padding: 0 8px;}
 /*************************/
 #warning{ width:100%;position:fixed;top:0px;left:0px;display:none;z-index: 1030;}
 #warning div{background:#7ACCFF;display:table;padding: 5px 10px;}
@@ -116,25 +92,6 @@ tr.impar td{padding: 0 8px;}
 #divloading div{background:#fff6dd;display:table;padding:5px;}
 /*************************/
 
-/******************
-Condutor
-*********************/
-.tbcondutor h3{margin:3px 0 0 0;}
-
-.condutor{border:1px solid;width: 600px;}
-.condutor  input[type=text]{width: 100%;}
-.condutor  select{width: 100%;}
-.condutor  th{font-weight: bold;border: 1px solid;
-	font-size: 12px;margin: 0 5px;width: 135px;
-	padding: 2px 0;}
-.condutor td{border: 1px solid;font-size: 12px;min-width: 40px;}
-.condutor i{margin: 3px 0 0 5px;float:left;}
-
-.condutor2 label{float:right;display:block;font-size: 12px;
-	font-weight: bold;padding: 2px 5px;}
-.condutor2 .div2{float:left;width:147px;height: 25px;}
-.div2 input[type=text]{width: 100%;}
-.condutor2 label{float:right;display:block;font-size: 12px;font-weight: bold;padding: 2px 5px;}
 /************
 RODAPÉ
 ************/

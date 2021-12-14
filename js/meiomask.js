@@ -153,11 +153,14 @@
             // <input type="text" name="some_name" id="some_name" alt="msk" />
             masks: {
                 //NUMERO
+                '3num'              : { mask : '999' },
                 '5num'              : { mask : '99999' },
+                '7num'              : { mask : '0000009' },
                 'justnum'           : { mask : '99999' },
                 'numero'            : { mask : '9999999999' },
                 'matricula'         : { mask : '99999' }, //
                 'empresa'           : { mask : '99' }, //MPP empresa
+                'opacidade'           : { mask : '9.99' },
 
                 //DATA
                 'date'              : { mask : '39/19/2999' }, //uk date

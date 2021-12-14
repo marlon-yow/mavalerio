@@ -1,4 +1,4 @@
-/*!
+/*! ---UTF-8---
 * @Autor Mavalerio https://orcid.org/0000-0003-2770-0624
 * @version 0.0.0.5 [2021-set-02]
 * @copyleft GPLv3
@@ -60,5 +60,3 @@ class Numeros {
         return vlr;
     }
 }
-
-

@@ -1,45 +1,45 @@
 <?php
-/*!
+/*! ---UTF-8---
 * @Autor MV@URBS https://orcid.org/0000-0003-2770-0624
-* @version 0.0.0.3 [2020-out-25]
+* @version 0.0.0.4 [2021-dez-14]
 * @copyleft GPLv3
 */
-
+if (!class_exists('FUN')) {
 Class FUN{
     private $DBG = false;
     public function setDBG($d){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         $this->DBG = $d;
         if($this->DBG) echo "FUN->setDBG($d) <br>\n";
     }
 
     /**TEXTO**/
     public function endExplode($arg,$var){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
     	$_E = explode($arg,$var);
         return end($_E);
     }
 
     public function firstword($nomew,$arg=' '){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
     	$arr = explode($arg,$nomew);
     	return $arr[0];
     }
 
     public function homeExplode($arg,$var){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         $_E = explode($arg,$var);
         return reset($_E);
     }
 
     public function pad($var, $numChar, $pad='0',$pad_type=STR_PAD_LEFT){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
     	//STR_PAD_BOTH STR_PAD_LEFT STR_PAD_RIGHT
     	return str_pad($var,$numChar,$pad,$pad_type);
     }
 
     public function protect($var){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
 
     	$sec_arr = array("'"=>'','"'=>"");
 
@@ -55,39 +55,50 @@ Class FUN{
     }
 
     public function removeEspacosDuplicadosEntrePalavras($var){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
     	return preg_replace('/ +/', ' ', $var);
     }
 
     public function somenteLetras($str,$replaceWith=""){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
     	//return preg_replace("[^A-Za-z ]", "", $str);
     	return preg_replace("/[^A-Za-záàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/",$replaceWith,$str);
     }
 
     public function somenteLetrasEEspacos($str,$replaceWith=""){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
     	//return preg_replace("[^A-Za-z ]", "", $str);
     	return preg_replace("/[^A-Za-z[:space:]áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/",$replaceWith,$str);
     }
 
 
     public function somenteLetrasENumeros($str,$replaceWith=""){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if($this->DBG) echo "FUN->somenteLetrasENumeros($str) <br>\n";
         return preg_replace('/[^a-zA-Z0-9áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/', $replaceWith, $str);
     }
 
     public function somenteLetrasNumerosEspacosEChars($str,$replaceWith=""){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if($this->DBG) echo "FUN->somenteLetrasNumerosEspacosEChars($str) <br>\n";
         return preg_replace("/[^A-Za-z0-9[:space:]áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ,.-]/",$replaceWith,$str);
     }
 
     public function tirarAcentos($string){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if($this->DBG) echo "FUN->tirarAcentos($string) <br>\n";
         return preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/","/(Ç)/","/(ç)/"),explode(" ","a A e E i I o O u U n N C c"),$string);
+    }
+
+    public function formatarNome($nome){
+
+        $nome = strtoupper($nome);
+        $nome = $this->removeEspacosDuplicadosEntrePalavras($nome);
+        $nome = trim($nome);
+        $nome = $this->tirarAcentos($nome);
+        $nome = $this->somenteLetrasEEspacos($nome);
+
+        return $nome;
     }
 
     /**NUMEROS**/
@@ -99,7 +110,7 @@ Class FUN{
     );
 
     public function mask($val, $mask){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
 
         $_mask = $mask;
         $mask = $this->masks[$mask];
@@ -126,7 +137,7 @@ Class FUN{
     }
 
     public function dinheiroPrint($valor,$casasDescimais=2){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if(!$valor) return '0,00';
         $valor = str_replace(",", ".", $valor);
 
@@ -139,7 +150,7 @@ Class FUN{
     }
 
     public function dinheiroSemMascara($valor){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         $valor = dinheiroPrint($valor);
         $valor = str_replace(",", "", $valor);
         $valor = str_replace(".", "", $valor);
@@ -147,18 +158,20 @@ Class FUN{
     }
 
     public function somenteNumeros($value){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
-        return preg_replace( '/[^0-9]/', '', $value);
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
+        $val2 = preg_replace( '/[^0-9]/', '', $value);
+        if($this->DBG){ echo "Returning $val2 <br>\n";}
+        return $val2;
     }
 
     public function somenteNumerosPontosEVirgulas($value){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         return preg_replace( '/[^0-9],./', '', $value);
     }
 
     /*Criptografia*/
     public function hashe($val){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         $hs = sha1(SALT.$val);
         $hs2 = strrev($hs);
         $hs3 = substr($hs2,3,5);
@@ -168,23 +181,31 @@ Class FUN{
 
     /** ARRAY **/
     public function firstitem($arr){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         return reset($arr);
     }
 
     public function utf8Encode($var){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if(is_array($var)){
-            return array_map('utf8Encode',$var);
+            $_arr = array();
+            foreach ($var as $key => $value) {
+                $_arr[$this->utf8Encode($key)] = $this->utf8Encode($value);
+            }
+            return $_arr;
         }else{
             return utf8_encode($var);
         }
     }
 
     public function utf8Decode($var){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if(is_array($var)){
-            return array_map('utf8Decode',$var);
+            $_arr = array();
+            foreach ($var as $key => $value) {
+                $_arr[$this->utf8Decode($key)] = $this->utf8Decode($value);
+            }
+            return $_arr;
         }else{
             return utf8_decode($var);
         }
@@ -218,7 +239,7 @@ Class FUN{
 
     public function validaHora($hr){ return $this->validarHora($hr); }
     public function validarHora($hr){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if(!$hr) return false;
         $_arr = explode(" ", $hr);
         $hr = ($_arr[1] ? $_arr[1] : $_arr[0] );
@@ -242,7 +263,7 @@ Class FUN{
     }
 
     public function normalizaHora($str){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         $failSafe = '00:00:00';
 
         if(!$str) return $failSafe;
@@ -273,7 +294,7 @@ Class FUN{
 
     public function validaData($dt){ return $this->validarData($dt);}
     public function validarData($dt){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
 
         $_arr = explode(" ", $dt);
         if($this->DBG){ echo "FUN->validarData: explode: ".print_r($_arr,1)." <br>\n"; }
@@ -330,7 +351,7 @@ Class FUN{
     }
 
     public function normalizaData($str){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
 
         if(strlen($str) < 9 ){
             if($this->DBG) echo "FUN->normalizaData: < 9 char; return null <br>\n";
@@ -421,7 +442,7 @@ Class FUN{
     }
 
     public function dataPadraoBR($str){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         $str = $this->normalizaData($str);
         if(!$str) return null;
 
@@ -436,7 +457,7 @@ Class FUN{
     }
 
     public function dataVenceu($data){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if(!$data) return true;
         $data = $this->normalizaData($data);
         $intData = strtr($data,array('-'=>''));
@@ -447,7 +468,7 @@ Class FUN{
     }
 
     private function dataStrMktime($str){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
 
         //mktime ($hour,$minute,$second,$month,$day,$year)
         //$failSafe = mktime (date("H"),date("i"),date("s"),date("n"),date("j"),date("Y"));
@@ -476,12 +497,14 @@ Class FUN{
         }
 
         $arr_d = explode("-", $data);
-        return mktime($h,$m,$s,$arr_d[1],$arr_d[2],$arr_d[0]);
+        if($arr_d[1] and $arr_d[2] and $arr_d[0])
+            return mktime($h,$m,$s,$arr_d[1],$arr_d[2],$arr_d[0]);
+        return null;
     }
 
     /* dia da semana em texto */
     public function diaDaSemana($data){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if(!$data) return null;
         $data = $this->normalizaData($data);
         $arr_d = explode("-", $data);
@@ -491,7 +514,7 @@ Class FUN{
 
     /*$data1 menos a $data2*/
     public function diferencaDias($data1,$data2=null){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
 
         $date1 = $this->dataStrMktime($data1);
         $date2 = $this->dataStrMktime($data2);
@@ -512,7 +535,7 @@ Class FUN{
     negativo para dias passados, positivo para futuros
     */
     public function diferencaHoras($hora1, $hora2=false){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         $hh1 = substr($hora1,0,2);
         $hm1 = substr($hora1,3,2);
 
@@ -532,14 +555,14 @@ Class FUN{
 
     /*diferenca entre um time() iniciado no comeco do processamento e o agora, human read*/
     public function endTime($inp){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         $fnp = time();
         $tp = $fnp - $inp;
         return $this->time_distance($tp);
     }
 
     public function getMes($mes){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if(!$mes) return null;
 
         if(is_numeric($mes)){
@@ -560,7 +583,7 @@ Class FUN{
     }
 
     public function time_distance($secs){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         $bit = array(
             ' ano'        => $secs / 31556926 % 12,
             ' semana'        => $secs / 604800 % 52,
@@ -586,7 +609,7 @@ Class FUN{
     }
 
     public function getTempoDistancia($dt1,$dt2=false){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         $unix1 = $this->dataStrMktime($dt1);
         $unix2 = $this->dataStrMktime($dt2);
 
@@ -602,7 +625,7 @@ Class FUN{
 
     /* Placa de Carro, já com padrão mercosul */
     function fixPlaca($placa){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if($this->DBG) echo "FUN->fixPlaca($placa) <br>\n";
         $placa = $this->tirarAcentos($placa);
         $placa = strtoupper($this->somenteLetrasENumeros($placa));
@@ -625,7 +648,7 @@ Class FUN{
     }
     /*Limpar caracteres invalidos do email*/
     public function protectMail($email){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         $email = $this->tirarAcentos($email);
     	$email = preg_replace("/[^A-Za-z0-9@.#+-_]/","",$email);
         $email = substr($email,0,255);
@@ -634,19 +657,26 @@ Class FUN{
     }
 
     public function embaralhaEmail($email){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if(!$email) return '';
 
         $a = 0;
+        $fator = 3;
         $max = strlen($email);
         for($i=0;$i<=$max;$i++){
             $a++;
             if( preg_match("/[A-Za-z0-9]/",substr($email,$i,1)) ){
-                if($a <= 2){
+                if($a == $fator){
                     $email = substr_replace($email, '*',$i,1);
-                }else{
                     $a = 0;
+                    if($fator == 3){
+                        $fator = 2;
+                    }else{
+                        $fator = 3;
+                    }
                 }
+            }else{
+                $a--;
             }
         }
 
@@ -655,7 +685,7 @@ Class FUN{
 
     function protectNome($nome){ return $this->embaralhaNome($nome);}
     function embaralhaNome($nome){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if(!$nome) return '';
         $arr = explode(' ',$nome);
 
@@ -687,21 +717,21 @@ Class FUN{
 
     function validaEmail($value){ return $this->validarEmail($value); }
     function validarEmail($value){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         return filter_var($value, FILTER_VALIDATE_EMAIL);
     }
 
     function validaNome($nome){ return $this->validarNome($nome); }
     function validarNome($nome){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if(!$nome) return false;
         if(sizeof(explode(' ',$nome)) < 2) return false;
         return true;
     }
 
-    function validaCPFCNPJ($str=''){ return $this->validarCPFCNPJ($str='');}
+    function validaCPFCNPJ($str=''){ return $this->validarCPFCNPJ($str);}
     function validarCPFCNPJ($str=''){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         if($this->validarCPF($str)) return true;
         if($this->validarCNPJ($str)) return true;
         return false;
@@ -712,9 +742,9 @@ Class FUN{
      * @param  [mixed] $cpf CPF com ou sem mascara
      * @return [bool] true para válido
      */
-    function validaCPF($cpf) { return $this->validarCPF($cpf); }
+    function validaCPF($cpf){ return $this->validarCPF($cpf); }
     function validarCPF($cpf) {
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         $DBG = false;
         if($DBG) echo $cpf."<br>";
         $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
@@ -745,7 +775,7 @@ Class FUN{
         }
         if($DBG) echo "valido<br>";
         return true;
-    }/**/
+    }
 
     /**
      * validarCNPJ
@@ -754,7 +784,7 @@ Class FUN{
      */
     function validaCNPJ($cnpj){ return $this->validarCNPJ($cnpj); }
     function validarCNPJ($cnpj){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
 
         $cnpj = preg_replace('/[^0-9]/', '', (string) $cnpj);
 
@@ -794,7 +824,7 @@ Class FUN{
     /**LINK**/
 
     function getLinkGet($arrRemove){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
     	global $_GET;
     	$link = '';
     	$arr_get = $_GET;
@@ -819,7 +849,7 @@ Class FUN{
 
     /*Permissão*/
     function requerirPermissao($perms='',$DBG = false){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         global $_SESSION,$appname,$caminho;
 
         $permitido = $this->testarPermissao($perms,$DBG);
@@ -837,7 +867,7 @@ Class FUN{
     }
 
     function testarPermissao($perms='',$DBG=false){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         global $_SESSION,$appname,$caminho;
 
         if($DBG) echo 'testar acesso. ';
@@ -866,7 +896,7 @@ Class FUN{
     }
 
     function requerirPermissao_old($perms=''){
-        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
         global $db,$_SESSION,$appname,$caminho;
         $DBG = false;
 
@@ -904,4 +934,5 @@ Class FUN{
             exit();
         }
     }
+}
 }

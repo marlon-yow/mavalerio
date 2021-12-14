@@ -1,52 +1,52 @@
-/*!
+/*! ---UTF-8---
 * @Autor Mavalerio https://orcid.org/0000-0003-2770-0624
 * @version 0.0.0.3 [2021-set-27]
 * @copyleft GPLv3
 */
 
   /** Funcao para esconder/mostrar elementos - compatibilidade
-	*	@parameter mixed nomeDoObjeto
-	*/
-	function toggle(obj) {$('#'+obj).slideToggle();}
+    *    @parameter mixed nomeDoObjeto
+    */
+    function toggle(obj) {$('#'+obj).slideToggle();}
 
     /** Funcão que mostra e esconde menu dropdown
-	*	@parameter html_object objetoReferencia (this)
-	*	@parameter mixed idDoMenu
-	*/
-	function showMenu(obj,divmenu){
-		var rect = obj.getBoundingClientRect();
-		$('#'+divmenu).css('top',rect.top+25).css('left',rect.left).slideToggle();
-	}
+    *    @parameter html_object objetoReferencia (this)
+    *    @parameter mixed idDoMenu
+    */
+    function showMenu(obj,divmenu){
+        var rect = obj.getBoundingClientRect();
+        $('#'+divmenu).css('top',rect.top+25).css('left',rect.left).slideToggle();
+    }
     /** Funcao retrocompativel, usar showMenu
-	*/
-	function gMS(obj,divmenu){ //manter retrocompatibilidade
-		showMenu(obj,divmenu);
+    */
+    function gMS(obj,divmenu){ //manter retrocompatibilidade
+        showMenu(obj,divmenu);
     }
 
     /** Função que redimensiona textarea para o conteúdo - NOVA
-	*	@parameter htmlObject (this)
-	*/
-	function sz(t) {
-		var objT = $(t);
-		var a = objT.val().split('\n');
-		var newSz = a.length;
+    *    @parameter htmlObject (this)
+    */
+    function sz(t) {
+        var objT = $(t);
+        var a = objT.val().split('\n');
+        var newSz = a.length;
         $.each(a,function(i,itm){
             if(itm.length > 80){
                 newSz += parseInt(itm.length / 80)+1;
             }
         });
         newSz =  18 * newSz;
-		if (newSz > parseInt(objT.css('height')) ) objT.css('height',newSz);
-	}
+        if (newSz > parseInt(objT.css('height')) ) objT.css('height',newSz);
+    }
 
-	/** Funcao que conta quantos caracteres ainda tem restantes no campo texto
+    /** Funcao que conta quantos caracteres ainda tem restantes no campo texto
     *   @parameter htmlObject (this)
     *   @returns int
     *   @required atributo maxlength no objeto de texto
     *   @sample <textarea name='' id='' onclick='sz(this)' maxlength="255" onkeyup='$("#tobslimit").html(testTextAreaSize(this))'></textarea>
     *    <span id='tobslimit'>0</span>
     */
-	function testTextAreaSize(obj){
+    function testTextAreaSize(obj){
         o = $(obj);
         maxlength = o.attr('maxlength');
         atualLenth = o.val().length;
@@ -56,8 +56,23 @@
         return (maxlength-atualLenth);
     }
 
-	/** Funcao que limpa a tabela conservando a linha de cabeçalho
-	*	@parameter mixed idTabela
+    /**
+     * funcao que conta quantos caracteres tem e mostra quantos faltam para o maximo
+     * @param  DOM (this) textare que vai ser contada
+     * @param  int maxChar máximo de char
+     * @param  mixed spanName nome do Span/DIV que vai ter o contador
+     */
+    function contadorCaracteres(edt,maxChar,spanName) {
+        if(!maxChar) maxChar = 500;
+        var qtd = $(edt).val().length;
+        if(qtd > maxChar){
+            $(edt).val($(edt).val().substr(0,maxChar));
+        }
+        $('#'+spanName).html( maxChar - qtd);
+    }
+
+    /** Funcao que limpa a tabela conservando a linha de cabeçalho
+    *    @parameter mixed idTabela
     *   @parameter int quantidade de linhas a manter
     */
     function clearTable(tbName,num) {
@@ -141,35 +156,35 @@
        });
    }
 
-	/**************/
-	/* DOCUMENTOS */
+    /**************/
+    /* DOCUMENTOS */
     /**************/
 
     /**
-    *	Função que valida CPF
-    * 	@parameter mixed cpf (com ou sem mascara)
-    *	@returns boolean (true para valido)
+    *    Função que valida CPF
+    *     @parameter mixed cpf (com ou sem mascara)
+    *    @returns boolean (true para valido)
     */
-	function ValidarCPF(cpf){
-	    return cpf.isCPF();
-	}
+    function ValidarCPF(cpf){
+        return cpf.isCPF();
+    }
 
-	function ValidarCNPJ(cnpj){
-	    return cnpj.isCNPJ();
-	}
+    function ValidarCNPJ(cnpj){
+        return cnpj.isCNPJ();
+    }
 
-	function ValidarCPFCNPJ(doc){
-	    return ( doc.isCPF() || doc.isCNPJ() );
-	}
-	
+    function ValidarCPFCNPJ(doc){
+        return ( doc.isCPF() || doc.isCNPJ() );
+    }
+
         function validarNome(nome){
             if(!nome) return false;
             if(nome.length < 5) return false;
             if(nome.search(new RegExp(" ", "i")) == -1) return false;
             return true;
         }
-    
-	/***************************************
+
+    /***************************************
     * String.isCPF Function v1.0
     * Autor: Carlos R. L. Rodrigues
     Como Chamar a função: String.isCPF()
@@ -216,7 +231,7 @@
         cpf == "88888888888" ||
         cpf == "99999999999"){
             if(dbg) console.log('!repeticao');
-			return false;
+            return false;
         }
         // Valida 1o digito
         add = 0;
@@ -302,31 +317,31 @@
     /**************/
 
     /** Função que corta os numeros finais de um float
-    * 	@parameter mixed floatACortar
-    * 	@parameter int quantidadeDeCasas
-    * 	@returns mixed numeroTruncado
+    *     @parameter mixed floatACortar
+    *     @parameter int quantidadeDeCasas
+    *     @returns mixed numeroTruncado
     */
-	function truncaDeVerdade(flutuante, casas){
+    function truncaDeVerdade(flutuante, casas){
         var s_a2 = flutuante.toString();
         var arr_a2 = s_a2.split('.');
-		if(!arr_a2[1]){arr_a2[1] = '0';}
+        if(!arr_a2[1]){arr_a2[1] = '0';}
         s_a2 = parseFloat(arr_a2[0]).toString()+'.'+arr_a2[1].substr(0,casas);
         var a2 = parseFloat(s_a2);
         return a2;
     }
 
     /** Funcao preenche com zeros à esquerda o numero
-	*	@parameter mixed numero
-	*	@parameter int casas
-	*	@returns mixed
-	*/
-	function pad(number, length) {
-		var str = '' + number;
-		while (str.length < length) {
-    		str = '0' + str;
-		}
-		return str;
-	}
+    *    @parameter mixed numero
+    *    @parameter int casas
+    *    @returns mixed
+    */
+    function pad(number, length) {
+        var str = '' + number;
+        while (str.length < length) {
+            str = '0' + str;
+        }
+        return str;
+    }
 
     /** Função que evita que o usuário digite vírgula em campo numérico
     *   @parameter this (usar no onkeyup)
@@ -378,10 +393,19 @@
 
     /* funçao de ping para keepalive*/
     function tmout(){
+        if(!$('#footerPing').length){
+            $('#footer_texto').append(
+                $('<div>').attr('id','footerPing').addClass('no-print')
+            );
+        }
+
         $.post('/ping.php',function(data) {
-            $('#tmout').html(data);
-        });
-        setTimeout(function() {tmout();}, 30000);
+            $('#footerPing').html('')
+            .append(data[0])
+            .append(' ')
+            .append(data[3]);
+            setTimeout(function() {tmout();}, 30000);
+        },'json');
     }
 
 /* Inicialização de bibliotecas de másca de campo e desativa cache do jqery*/

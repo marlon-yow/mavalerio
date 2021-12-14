@@ -1,4 +1,9 @@
 <?php
+/*! ---UTF-8---
+* @Autor MV@URBS https://orcid.org/0000-0003-2770-0624
+* @version 0.0.0.2 [2020-nov-12]
+* @copyleft GPLv3
+*/
 
 class BlackListDoc{
 
@@ -51,7 +56,7 @@ class BlackListDoc{
 
     private function carregarLista(){
         try{
-            /* Verificar se: * existe * tem conte�do * � de hoje */
+            /* Verificar se: * existe * tem conteudo * é de hoje */
         	if(file_exists($this->cache_file)){
         		if(filesize($this->cache_file) > 1){
         			if( date ("Ymd", filemtime($this->cache_file)) == date('Ymd') ){

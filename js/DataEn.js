@@ -1,4 +1,4 @@
-/*!
+/*! ---UTF-8---
 * @Autor Mavalerio https://orcid.org/0000-0003-2770-0624
 * @version 0.0.0.6 [2021-set-03]
 * @copyleft GPLv3
@@ -7,10 +7,6 @@
 /**
  * Lib que trata as datas no padrão americano AAAA-MM-DD
  */
-
-
-
-
 class DataEn extends Date {
     static dayNames = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
     static abbrDayNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
@@ -29,7 +25,7 @@ class DataEn extends Date {
     getMes(){ return pad((this.getMonth()+1),2); };
     getAno(){ return this.getUTCFullYear(); };
 
-	/**
+    /**
     *    Funcao preenche com zeros a esquerda o numero
     *    @parameter mixed numero
     *    @parameter int casas
@@ -400,9 +396,9 @@ class DataEn extends Date {
         if(dt.length > 10){
             hora = dt.substr(11,8);
         }
-        var data = dt.substr(11,8);
+        var data = dt.substr(0,10);
 
-        var arr = dt.split('-');
+        var arr = data.split('-');
         arr = arr.reverse();
         return arr.join('/')+(hora ? " "+hora : '');
     }
