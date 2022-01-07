@@ -26,7 +26,7 @@ class BancoDeDadosMysql{
 		$this->servidor = $h;
 		$this->database = $d;
         if(!$this->usuario or !$this->senha or !$this->servidor or !$this->database){
-            echo "Não tenho todos os dados para conectar: ($u,$p,$h,$d)";
+            echo "NÃ£o tenho todos os dados para conectar: ($u,$p,$h,$d)";
             die;
         }
 
@@ -54,7 +54,7 @@ class BancoDeDadosMysql{
         try{
             if(!ocilogoff($this->con)){
                     $e = oci_error();
-                    trigger_error("Erro ao desconectar do servidor usando a extensï¿½o OCI - " . $e['message'], E_USER_WARNING);
+                    trigger_error("Erro ao desconectar do servidor usando - " . $e['message'], E_USER_WARNING);
             }
         }catch (Exception $e1){
             trigger_error($e1->getMessage(), E_USER_WARNING);

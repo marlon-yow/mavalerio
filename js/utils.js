@@ -1,6 +1,6 @@
 /*! ---UTF-8---
 * @Autor Mavalerio https://orcid.org/0000-0003-2770-0624
-* @version 0.0.0.3 [2021-set-27]
+* @version 0.0.0.4 [2021-dez-06]
 * @copyleft GPLv3
 */
 
