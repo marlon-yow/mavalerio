@@ -1,7 +1,7 @@
 <?php
 /*! ---UTF-8---
 * @Autor Mavalerio https://orcid.org/0000-0003-2770-0624
-* @version 0.0.0.2 [2021-dez-14]
+* @version 0.0.0.3 [2022-fev-4]
 * @copyleft GPLv3
 */
 
@@ -11,7 +11,7 @@ class BancoDeDadosMysql{
     var $senha;
     var $servidor;
     var $database;
-    //var $porta = 3306;
+    var $porta = 3306;
     var $con;
     var $erro;
     public $DBG = false;
@@ -54,7 +54,7 @@ class BancoDeDadosMysql{
         try{
             if(!ocilogoff($this->con)){
                     $e = oci_error();
-                    trigger_error("Erro ao desconectar do servidor usando - " . $e['message'], E_USER_WARNING);
+                    trigger_error("Erro ao desconectar do servidor usando mysqli - " . $e['message'], E_USER_WARNING);
             }
         }catch (Exception $e1){
             trigger_error($e1->getMessage(), E_USER_WARNING);
@@ -64,7 +64,7 @@ class BancoDeDadosMysql{
     public function getCon(){ return $this->con; }
 
     public function query($param,$prepares=array()){
-        if($this->DBG){ echo "BancoDeDados->query: $param <br>\n";}
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
 
         if(sizeof($prepares)) return $this->queryPrepared($param,$prepares);
 
@@ -108,18 +108,30 @@ class BancoDeDadosMysql{
 
         if(homeExplode(' ',$param) == "INSERT"){
             if($this->DBG){ echo "BancoDeDados->query: é Insert, chamar outra funcao <br>\n";}
-            return $this->con->insert_id;
+            $id = $this->con->insert_id;
+            if(!$id) return true; //não auto numericos
+            return $id;
         }
         return $sql;
     }
 
-    public function queryPrepared($param,$prepares=array()){
+    public function queryPrepared($param, $prepares = array() ){
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
         $res = null;
         $statement = $this->con->stmt_init();
         if ($statement->prepare($param)) {
 
-            if(is_array($prepares))foreach ($prepares as $key => $value) {
-                $statement->bind_param($value[0], $value[1]);
+            if(is_array($prepares)){
+                //sinto uma vergonha imensa disso, mas não consigo resolver de outra forma
+                switch (strlen($prepares[0])) {
+                    case '1':
+                        $statement->bind_param($prepares[0], $prepares[1]);
+                        break;
+                    default:
+                        echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__;
+                        echo "quantidade de param: ".strlen($prepares[0])." Não suportada. Edite o case";
+                        break;
+                }
             }
 
             if (!$statement->execute()) {
@@ -127,14 +139,14 @@ class BancoDeDadosMysql{
             }
 
             /* bind result variables */
-            $re = $statement;
+            $res = $statement;
         }
         //$res = $prepared->execute();
         return $res;
     }
 
     public function normalizaData($data){
-        if($this->DBG){ echo "BancoDeDados->normalizaData: $data <br>\n";}
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
 
         if(!$data) return null;
         if($this->DBG) echo "<pre>normalizaData $data</pre>";
@@ -153,7 +165,7 @@ class BancoDeDadosMysql{
     }
 
     public function sqlDate($dt){
-        if($this->DBG){ echo "BancoDeDados->sqlDate: $dt <br>\n";}
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
 
         /*palavras que podem se enviadas para o banco ao inves de uma data*/
         $safe_words = array(
@@ -184,7 +196,7 @@ class BancoDeDadosMysql{
     }
 
     public function validaData($dt){
-        if($this->DBG){ echo "BancoDeDados->validaData: $dt <br>\n";}
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
 
         $_arr = explode(" ", $dt);
         $data = $_arr[0];
@@ -211,7 +223,7 @@ class BancoDeDadosMysql{
     }
 
     public function validaHora($hr){
-        if($this->DBG){ echo "BancoDeDados->validaHora: $hr <br>\n";}
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
         if(!$hr) return false;
 
         if( strlen($hr) == 19 ){ // 19 digitos YYYY-MM-DD HH:MI:SS
@@ -236,7 +248,7 @@ class BancoDeDadosMysql{
     }
 
     public function sqlnumero($numero, $formatarFloat=false){
-        if($this->DBG){ echo "BancoDeDados->sqlnumero: $numero <br>\n";}
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
 
         if(!$numero) return 0;
         if($this->DBG) echo "<pre>Convertendo: $numero\n";
@@ -343,7 +355,7 @@ class BancoDeDadosMysql{
     }
 
     public function getQuantReg($param){
-        if($this->DBG){ echo "BancoDeDados->getQuantReg: $param <br>\n";}
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
         $parampg = "SELECT count(*) AS NUMERO FROM ($param) TC";
 
         $sql_pg = $this->query($parampg);
@@ -352,7 +364,7 @@ class BancoDeDadosMysql{
     }
 
     public function paginado($param, $inicial, $final){
-        if($this->DBG){ echo "BancoDeDados->paginado: $param, $inicial, $final <br>\n";}
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n" .implode(" <br>\n",func_get_args()) ."<br>\n ) <br>\n"; }
         $lim = intval($final - $inicial);
         if($lim < 1) $lim = 30;
 
@@ -364,7 +376,7 @@ class BancoDeDadosMysql{
     }
 
     public function fetch($sql){
-        if($this->DBG){ echo "BancoDeDados->fetch: <br>\n";}
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."( <br>\n<xmp>" .print_r(func_get_args()) ."</xmp>\n ) <br>\n"; }
         if(gettype($sql) != 'object'){
             if($this->DBG){ echo "BancoDeDados->fetch: <br>\n";}
             echo "<hr>Tentado processar dados com tipo errado: ".gettype($sql)." verificar consulta";

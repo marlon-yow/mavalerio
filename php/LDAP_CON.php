@@ -24,36 +24,36 @@ if (!class_exists('LDAP_CON')) {
         var $bkp_username = 'helpdesk';
         var $bkp_senha = 'helpdesk';
 
-        var $ldap_server = "172.16.250.5";
-        var $dominio = "@URBS"; //Dominio local ou global
-        var $ldap_porta = "389";
-        var $ldap_base_dn = 'dc=urbs,dc=curitiba,dc=pr,dc=gov,dc=br';
+        var $ldap_server = ""; // EX: 172.16.250.5
+        var $dominio = ""; //Dominio local ou global @empresa
+        var $ldap_porta = "389"; //default 389
+        var $ldap_base_dn = ''; // Ex: dc=google,dc=com,dc=br
         var $ldapcon;
 
         var $logged = null;
         var $user = null;
         var $erro = null;
 
-        private function  __construct($username,$password,$server,$domain,$baseDN){
-            if(!$username or !$password or !$server){
-                echo "Faltam dados de conexão para logar no LDAP";
+        public function  __construct($ldapObj){
+
+            if(!$ldapObj['user'] or !$ldapObj['password'] or !$ldapObj['server']){
+                echo "Faltam dados de conexão para logar no LDAP [user,password,server]";
                 die;
             }
 
-            $this->bkp_username = $username;
-            $this->bkp_senha = $password;
-
-            if(strpos($server,':') > -1){
-                $arr = explode(':',$server);
-                $this->ldap_server = $arr[0];
-                $this->ldap_porta = $arr[1];
-            }else{
-                $this->ldap_server = $server;
+            $this->bkp_username = $ldapObj['user'];
+            $this->bkp_senha = $ldapObj['password'];
+            $this->ldap_server = $ldapObj['server'];
+            if($ldapObj['port']){
+                $this->ldap_porta = $ldapObj['port'];
             }
+            $this->dominio = $ldapObj['domain'];
+            $this->ldap_base_dn = $ldapObj['basedn'];
 
-            $this->dominio = $domain;
-            $this->ldap_base_dn = $baseDN;
+            $this->tryToConnect();
+        }
 
+        public function tryToConnect(){
 
             $this->ldapcon = ldap_connect($this->ldap_server, $this->ldap_porta);
             ldap_set_option($this->ldapcon, LDAP_OPT_PROTOCOL_VERSION, 3);
@@ -65,17 +65,9 @@ if (!class_exists('LDAP_CON')) {
             }
         }
 
-        public static function singleton(){
-            if (!isset(self::$instance)) {
-                $c = __CLASS__;
-                self::$instance = new $c;
-            }
-
-            return self::$instance;
-        }
-
         public function  __destruct(){
-            ldap_unbind($this->ldapcon);
+            if(isset($this->ldapcon) and $this->ldapcon)
+                ldap_unbind($this->ldapcon);
         }
 
         //Get standard users and contacts

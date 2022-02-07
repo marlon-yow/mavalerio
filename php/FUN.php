@@ -350,6 +350,11 @@ Class FUN{
         return true;
     }
 
+    /**
+     * [normalizaData description]
+     * @param  [type] $str               [description]
+     * @return mixed YYYY-MM-DD HH:ii:ss
+     */
     public function normalizaData($str){
         if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__."<xmp>" .print_r(func_get_args(),1)."</xmp><br>\n"; }
 
@@ -820,6 +825,18 @@ Class FUN{
         $resto = $soma % 11;
         return $cnpj[13] == ($resto < 2 ? 0 : 11 - $resto);
     }
+
+    /**
+     * testa se a string é cpf ou cnpj
+     * @param  STRING $str CPF CNPJ ou
+     * @return STRING CPF/CNPJ/ERR
+     */
+    public function testarCpfCnpj($str){
+        if($this->validarCNPJ($str)) return 'CNPJ';
+        if($this->validarCPF($str)) return 'CPF';
+        return 'ERR';
+    }
+
 
     /**LINK**/
 
