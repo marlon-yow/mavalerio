@@ -11,6 +11,7 @@ banner_print.php
 footer.php
 funcoes_especificas.php
 head.php
+paginacao.php
 sec_pg.php
 
 e configure eles.
