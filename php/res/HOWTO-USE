@@ -3,6 +3,7 @@ no projeto, pasta vendor/mavalerio/php/res
 copie para pasta de RES do projeto, dessa pasta:
 
 _autoLoad.php
+_body_extras.php
 _menu.php
 _menu_extra.php
 _preHead_extras.php

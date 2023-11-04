@@ -11,7 +11,7 @@ function firstword($nomew,$arg=' '){
 	return $arr[0];
 }
 
-/* Placa de Carro, já com padrão mercosul */
+/* Placa de Carro, jÃ¡ com padrÃ£o mercosul */
 function fixPlaca($placa){
     $placa = strtoupper(somenteLetrasENumeros($placa));
     $p1 =  substr($placa, 0, 3);
@@ -43,18 +43,18 @@ function pad($var, $numChar, $pad='0',$pad_type=STR_PAD_LEFT){
 
 function protect($var){
 	$sec_arr = array("'"=>'','"'=>"");
-	
+
 	if(is_array($var)){
 		return array_map('protect',$var);
 	}else{
-		return strtr($var,$sec_arr);
+		return $var !== null ? strtr($var,$sec_arr) : '';
 	}
 }
 
 function protectMail($email){
 	$email = preg_replace("/[^A-Za-z0-9@.#+-_]/","",$email);
     $email = substr($email,0,255);
-    
+
     return $email;
 }
 
@@ -64,20 +64,20 @@ function removeEspacosDuplicadosEntrePalavras($var){
 
 function somenteLetras($str){
 	//return preg_replace("[^A-Za-z ]", "", $str);
-	return preg_replace("/[^A-Za-záàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/","",$str);
+	return preg_replace("/[^A-Za-zÃ¡Ã Ã£Ã¢ÃÃ€ÃƒÃ‚Ã©Ã¨ÃªÃ‰ÃˆÃŠÃ­ÃÃ³ÃµÃ“Ã•ÃºÃšÃ§Ã‡]/","",$str);
 }
 
 function somenteLetrasEEspacos($str){
 	//return preg_replace("[^A-Za-z ]", "", $str);
-	return preg_replace("/[^A-Za-z[:space:]áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/","",$str);
+	return preg_replace("/[^A-Za-z[:space:]Ã¡Ã Ã£Ã¢ÃÃ€ÃƒÃ‚Ã©Ã¨ÃªÃ‰ÃˆÃŠÃ­ÃÃ³ÃµÃ“Ã•ÃºÃšÃ§Ã‡]/","",$str);
 }
 
 function somenteLetrasENumeros($str){
-    return preg_replace('/[^a-zA-Z0-9áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/', "", $str);
+    return preg_replace('/[^a-zA-Z0-9Ã¡Ã Ã£Ã¢ÃÃ€ÃƒÃ‚Ã©Ã¨ÃªÃ‰ÃˆÃŠÃ­ÃÃ³ÃµÃ“Ã•ÃºÃšÃ§Ã‡]/', "", $str);
 }
 
 function tirarAcentos($string){
-    return preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"),$string);
+    return preg_replace(array("/(Ã¡|Ã |Ã£|Ã¢|Ã¤)/","/(Ã|Ã€|Ãƒ|Ã‚|Ã„)/","/(Ã©|Ã¨|Ãª|Ã«)/","/(Ã‰|Ãˆ|ÃŠ|Ã‹)/","/(Ã­|Ã¬|Ã®|Ã¯)/","/(Ã|ÃŒ|Ã|Ã)/","/(Ã³|Ã²|Ãµ|Ã´|Ã¶)/","/(Ã“|Ã’|Ã•|Ã”|Ã–)/","/(Ãº|Ã¹|Ã»|Ã¼)/","/(Ãš|Ã™|Ã›|Ãœ)/","/(Ã±)/","/(Ã‘)/"),explode(" ","a A e E i I o O u U n N"),$string);
 }
 
 

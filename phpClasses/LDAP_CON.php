@@ -1,27 +1,27 @@
 <?php
 /*!
 * @Autor MV@URBS https://orcid.org/0000-0003-2770-0624
-* @version 0.0.0.3 [2021-dez-14]
+* @version 0.0.0.4 [2022-out-07]
 * @copyleft GPLv3
 */
 
-if (!function_exists('ldap_connect')) {
-    echo "Não tem LDAP instalado no PHP";
-    die;
+namespace mavalerio\phpClasses;
+
+if(!function_exists('ldap_connect')){
+    echo "Não tem LDAP instalado no PHP"; die;
 }
 
 /**
- *
- *   $ldap->logar($usuario,$senha)
- *
- *
- *   $ldap->getGrupos()
- *
- */
-
+*
+*   $ldap->logar($usuario,$senha)
+*
+*
+*   $ldap->getGrupos()
+*
+*/
+if (!class_exists('mavalerio\phpClasses\LDAP_CON')) {
 if (!class_exists('LDAP_CON')) {
-    class LDAP_CON
-    {
+    class LDAP_CON {
 
         var $bkp_username = 'helpdesk';
         var $bkp_senha = 'helpdesk';
@@ -36,10 +36,9 @@ if (!class_exists('LDAP_CON')) {
         var $user = null;
         var $erro = null;
 
-        public function  __construct($ldapObj)
-        {
+        public function  __construct($ldapObj){
 
-            if (!$ldapObj['user'] or !$ldapObj['password'] or !$ldapObj['server']) {
+            if(!$ldapObj['user'] or !$ldapObj['password'] or !$ldapObj['server']){
                 echo "Faltam dados de conexão para logar no LDAP [user,password,server]";
                 die;
             }
@@ -47,7 +46,7 @@ if (!class_exists('LDAP_CON')) {
             $this->bkp_username = $ldapObj['user'];
             $this->bkp_senha = $ldapObj['password'];
             $this->ldap_server = $ldapObj['server'];
-            if ($ldapObj['port']) {
+            if($ldapObj['port']){
                 $this->ldap_porta = $ldapObj['port'];
             }
             $this->dominio = $ldapObj['domain'];
@@ -56,22 +55,20 @@ if (!class_exists('LDAP_CON')) {
             $this->tryToConnect();
         }
 
-        public function tryToConnect()
-        {
+        public function tryToConnect(){
 
             $this->ldapcon = ldap_connect($this->ldap_server, $this->ldap_porta);
             ldap_set_option($this->ldapcon, LDAP_OPT_PROTOCOL_VERSION, 3);
             ldap_set_option($this->ldapcon, LDAP_OPT_REFERRALS, 0); // We need this for doing an LDAP search.
 
-            if (!$this->ldapcon) {
+            if (!$this->ldapcon){
                 trigger_error("Erro ao conectar ao servidor usando a extensão LDAP");
                 $this->erro = "Servidor não deixou conectar";
             }
         }
 
-        public function  __destruct()
-        {
-            if (isset($this->ldapcon) and $this->ldapcon)
+        public function  __destruct(){
+            if(isset($this->ldapcon) and $this->ldapcon)
                 ldap_unbind($this->ldapcon);
         }
 
@@ -79,10 +76,9 @@ if (!class_exists('LDAP_CON')) {
         //$search_filter = '(|(objectCategory=person)(objectCategory=contact)(dc=mavalerio))';
 
 
-        public function logar($usuario, $senha)
-        {
-            if (!$usuario) return false;
-            if (!$senha) return false;
+        public function logar($usuario,$senha){
+            if(!$usuario) return false;
+            if(!$senha) return false;
 
             $this->logged = false;
             $this->user = null;
@@ -90,11 +86,11 @@ if (!class_exists('LDAP_CON')) {
 
             $search_filter = "samaccountname=$usuario";
 
-            $userAndDomain = $usuario . $this->dominio;
+            $userAndDomain = $usuario.$this->dominio;
             //tenta logar com o usuario e senha
             $bind = @ldap_bind($this->ldapcon, $userAndDomain, $senha);
 
-            if ($bind) {
+            if($bind){
                 //deu certo, trazer informacoes do usuario
                 $result = ldap_search($this->ldapcon, $this->ldap_base_dn, $search_filter);
                 $info = ldap_get_entries($this->ldapcon, $result);
@@ -106,21 +102,21 @@ if (!class_exists('LDAP_CON')) {
 
                 //echo "<pre>";
                 //print_r($info[0]['memberof']); die;
-            } else {
-                $userAndDomain = $this->bkp_username . $this->dominio;
+            }else{
+                $userAndDomain = $this->bkp_username.$this->dominio;
 
                 $bind = @ldap_bind($this->ldapcon, $userAndDomain, $this->bkp_senha);
                 if ($bind) {
                     $result = ldap_search($this->ldapcon, $this->ldap_base_dn, $search_filter);
 
-                    if (ldap_count_entries($this->ldapcon, $result) == 0) {
+                    if (ldap_count_entries($this->ldapcon, $result) == 0){
                         $this->erro = "Usuario $usuario nao encontrado";
                         //echo "The entire directory was searched for (uid=" . $usuario . ") but no entry was found.<br />";
-                    } else if (ldap_count_entries($this->ldapcon, $result) == 1) {
+                    }else if (ldap_count_entries($this->ldapcon, $result) == 1){
                         $this->erro = "Senha errada";
                         //echo "The entire directory was searched for (uid=" . $usuario . ") and one entry was found.<br />";
                     }
-                } else {
+                }else{
                     $this->erro = "Erro na biblioteca LDAP: ";
                     if (ldap_get_option($this->ldapcon, LDAP_OPT_DIAGNOSTIC_MESSAGE, $extended_error)) {
                         $this->erro .= $extended_error;
@@ -134,59 +130,19 @@ if (!class_exists('LDAP_CON')) {
             return false;
         }
 
-        public function buscar($usuario)
-        {
-
-            $userAndDomain = $this->bkp_username . $this->dominio;
-
-            $bind = @ldap_bind($this->ldapcon, $userAndDomain, $this->bkp_senha);
-            if ($bind) {
-                $attributes = array();
-                $attributes[] = 'displayname';
-                $attributes[] = 'samaccountname';
-                $attributes[] = 'memberof';
-                // $result = ldap_search($this->ldapcon, $this->ldap_base_dn, "(&(objectCategory=person)(givenname=*))");
-                $result = ldap_search($this->ldapcon, $this->ldap_base_dn,"(&(objectClass=user)(objectCategory=person)(|(displayname=*{$usuario}*)(samaccountname=*{$usuario}*)(memberof=*{$usuario}*)))");
-                $entries = ldap_get_entries($this->ldapcon, $result);
-                foreach ($entries as $key_entries => $dados_entries) {
-                    if (
-                        !empty($dados_entries['displayname'][0]) &&
-                        !empty($dados_entries['samaccountname'][0])
-                    ) {
-                        if ($dados_entries['memberof'][0]) {
-                            $dados_entries['memberof'][0] = homeExplode(',', $dados_entries['memberof'][0]);
-                            if (substr($dados_entries['memberof'][0], 0, 3) == 'CN=') {
-                                $dados_entries['memberof'][0] = substr($dados_entries['memberof'][0], 3);
-                            }
-                        }
-                        $ad_users['usuarios' . $key_entries] = array('displayname' => $dados_entries['displayname'][0], 'samaccountname' => $dados_entries['samaccountname'][0], 'memberof' => $dados_entries['memberof'][0]);
-                    }
-                }
-            } else {
-                $this->erro = "Erro na biblioteca LDAP: ";
-                if (ldap_get_option($this->ldapcon, LDAP_OPT_DIAGNOSTIC_MESSAGE, $extended_error)) {
-                    $this->erro .= $extended_error;
-                } else {
-                    $this->erro .= "No info";
-                }
-            }
-            return $ad_users;
-        }
-
-        public function getGrupos()
-        {
-            if (!$this->logged) return false;
-            if ($this->user['grupos']) return $this->user['grupos'];
+        public function getGrupos(){
+            if(!$this->logged) return false;
+            if($this->user['grupos']) return $this->user['grupos'];
 
             $info = $this->user['memberof'];
             unset($info['count']);
 
             $grupos = array();
-            foreach ($info as $strGroup) {
-                $_str = explode(',', $strGroup);
-                foreach ($_str as $item) {
-                    if (substr($item, 0, 3) == 'CN=') {
-                        $grupos[] = substr($item, 3);
+            foreach($info as $strGroup){
+                $_str = explode(',',$strGroup);
+                foreach($_str as $item){
+                    if(substr($item,0,3) == 'CN='){
+                        $grupos[] = substr($item,3);
                     }
                 }
             }
@@ -194,4 +150,5 @@ if (!class_exists('LDAP_CON')) {
             return $grupos;
         }
     }
+}
 }

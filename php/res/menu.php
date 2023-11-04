@@ -10,7 +10,7 @@
         global $appname;
 
         $print = false;
-        if(!isset($itemMenu['permissao'])){
+        if(!isset($itemMenu['permissao']) or !sizeof($itemMenu['permissao'])){
             $print = true;
         }else if(is_array($itemMenu['permissao'])){
             foreach($itemMenu['permissao'] as $perm_temp){
@@ -30,12 +30,20 @@
             }
         }
 
+        if (isset($itemMenu['env'])) {
+            if (!testEnv($itemMenu['env'])){$print = false;}
+        }
+
         if( $print ){
             if(defined('LIB_BS') and LIB_BS == 4){
                 if(isset($itemMenu['class'])){
                     $itemMenu['class'] .= ' dropdown-item';
-                }else{
+                }else if(is_array($itemMenu)){
                     $itemMenu['class'] = ' dropdown-item';
+                }else{
+                    echo "</div></div></nav>";
+                    echo "<h1>Erro Configuração de Menu</h1>";
+                    debug($itemMenu);
                 }
             }
 
@@ -54,6 +62,27 @@
         }
     }
 
-    if(defined('LIB_BS') and LIB_BS == 4){ require_once (__DIR__.'/menu/_menu-bs4.php'); }
-    if(defined('LIB_BS') and LIB_BS == 3){ require_once (__DIR__.'/menu/_menu-bs3.php'); }
+    function testEnv($value = '') {
+        global $enviroment;
 
+        if ($value == $enviroment) return true;
+        if ($enviroment == 'hom' and $value == 'prod') return true;
+        if ($enviroment == 'dev') return true;
+        return false;
+
+        /*
+        prod show prod
+        hom show hom & prod
+        dev show all
+        */
+    }
+
+    if(defined('LIB_BS')){
+        if(file_exists(__DIR__.'/menu/_menu-bs'.LIB_BS.'.php')){
+            require_once (__DIR__.'/menu/_menu-bs'.LIB_BS.'.php');
+        }else{
+            echo "Arquivo não encontrado: ".__DIR__.'/menu/_menu-bs'.LIB_BS.'.php';
+            echo __FILE__.":".__LINE__;
+            die;
+        }
+    }

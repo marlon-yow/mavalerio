@@ -5,7 +5,7 @@
 * @copyleft GPLv3
 */
 $libCacheUpdate = date('dmH');
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+?><!DOCTYPE html>
 <html xmlns="https://www.w3.org/1999/xhtml">
 <head>
     <title><?php echo (defined('NOME_APRESENTACAO') ? NOME_APRESENTACAO : $appname);?></title>
@@ -23,25 +23,30 @@ $libCacheUpdate = date('dmH');
     <!-- JQuery -->
     <?php if(defined('LIB_JQUERY') and LIB_JQUERY == 3){ ?><script src='<?php echo $caminho;?>/vendor/jquery/js/jquery-3.4.1.min.js' type='text/javascript'></script><?php } ?>
 
-    <!-- bootstrap 3 ou 4 -->
-    <?php if(defined('LIB_BS') and LIB_BS == 3){ ?>
-        <link href="<?php echo $caminho;?>/vendor/mavalerio/css/default1-bs3.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo $caminho;?>/vendor/bootstrap-3/css/bootstrap.min.css" rel="stylesheet">
-        <script src='<?php echo $caminho;?>/vendor/bootstrap-3/js/bootstrap.min.js' type='text/javascript'></script>
-        <script src='<?php echo $caminho;?>/vendor/mavalerio/js/screenHelper-bs3.js?t=<?php echo $libCacheUpdate;?>' charset="UTF-8" type='text/javascript'></script>
-    <?php } ?>
-
-    <?php if(defined('LIB_BS') and LIB_BS == 4){ ?>
-        <link href="<?php echo $caminho;?>/vendor/mavalerio/css/default1-bs4.css?t=<?php echo $libCacheUpdate;?>" rel="stylesheet" type="text/css" />
-        <link href="<?php echo $caminho;?>/vendor/bootstrap-4.5.3/css/bootstrap.min.css" rel="stylesheet">
-        <script src='<?php echo $caminho;?>/vendor/bootstrap-4.5.3/js/bootstrap.min.js' type='text/javascript'></script>
-        <script src='<?php echo $caminho;?>/vendor/mavalerio/js/screenHelper-bs4.js?t=<?php echo $libCacheUpdate;?>' charset="UTF-8" type='text/javascript'></script>
+    <?php if( defined('LIB_BS') ){ ?>
+        <!-- bootstrap 3 ou 4 -->
+        <?php if(LIB_BS == 3){ ?>
+            <link href="<?php echo $caminho;?>/vendor/mavalerio/css/default1-bs3.css" rel="stylesheet" type="text/css" />
+            <link href="<?php echo $caminho;?>/vendor/bootstrap-3/css/bootstrap.min.css" rel="stylesheet">
+            <script src='<?php echo $caminho;?>/vendor/bootstrap-3/js/bootstrap.min.js' type='text/javascript'></script>
+            <script src='<?php echo $caminho;?>/vendor/mavalerio/js/screenHelper-bs3.js?t=<?php echo $libCacheUpdate;?>' charset="UTF-8" type='text/javascript'></script>
+        <?php } else if(LIB_BS == 4){ ?>
+            <link href="<?php echo $caminho;?>/vendor/mavalerio/css/default1-bs4.css?t=<?php echo $libCacheUpdate;?>" rel="stylesheet" type="text/css" />
+            <link href="<?php echo $caminho;?>/vendor/bootstrap-4.6.0/css/bootstrap.min.css" rel="stylesheet">
+            <script src='<?php echo $caminho;?>/vendor/bootstrap-4.6.0/js/bootstrap.min.js' type='text/javascript'></script>
+            <script src='<?php echo $caminho;?>/vendor/mavalerio/js/screenHelper-bs4.js?t=<?php echo $libCacheUpdate;?>' charset="UTF-8" type='text/javascript'></script>
+        <?php } else if(LIB_BS == 5){ ?>
+            <link href="<?php echo $caminho;?>/vendor/mavalerio/css/default1-bs5.css?t=<?php echo $libCacheUpdate;?>" rel="stylesheet" type="text/css" />
+            <link href="<?php echo $caminho;?>/vendor/bootstrap-5.2.2-dist/css/bootstrap.min.css" rel="stylesheet">
+            <script src='<?php echo $caminho;?>/vendor/bootstrap-5.2.2-dist/js/bootstrap.min.js' type='text/javascript'></script>
+            <script src='<?php echo $caminho;?>/vendor/mavalerio/js/screenHelper-bs5.js?t=<?php echo $libCacheUpdate;?>' charset="UTF-8" type='text/javascript'></script>
+        <?php } ?>
     <?php } ?>
 
     <!-- TOAST -->
     <?php if(defined('LIB_TOAST') and LIB_TOAST){ ?>
-        <link rel="stylesheet" href="<?php echo $caminho;?>/vendor/jquery/jquery.toast/jquery.toast.min.css" type="text/css">
-        <script src='<?php echo $caminho;?>/vendor/jquery/jquery.toast/jquery.toast.min.js' type='text/javascript'></script>
+        <link rel="stylesheet" href="<?php echo $caminho;?>/vendor/jquery/toast2/jquery.toast.css" type="text/css">
+        <script src='<?php echo $caminho;?>/vendor/jquery/toast2/jquery.toast.js' type='text/javascript'></script>
         <script src='<?php echo $caminho;?>/vendor/mavalerio/js/mensagemDeCanto.js?t=<?php echo $libCacheUpdate;?>' type='text/javascript'></script>
     <?php } ?>
 
@@ -57,11 +62,19 @@ $libCacheUpdate = date('dmH');
     <?php if(defined('RES') and file_exists(MAVALERIO_ALT_CONFIG_FOLDER."_preHead_extras.php")){ require (MAVALERIO_ALT_CONFIG_FOLDER."_preHead_extras.php"); } ?>
 
     <!-- CSS -->
-    <?php if(defined('LIB_FA') and  LIB_FA == 5 ){ ?>
-        <link href="<?php echo $caminho;?>/vendor/fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
-        <script src='<?php echo $caminho;?>/vendor/fontawesome-free-5.15.4-web/js/all.js' type='text/javascript'></script>
+    <?php if( defined('LIB_FA') ){ ?>
+        <!-- FONT AWESOME -->
+        <?php if(LIB_FA == 4){ ?>
+            <link href="<?php echo $caminho;?>/vendor/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <?php }else if(LIB_FA == 5){ ?>
+            <link href="<?php echo $caminho;?>/vendor/fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
+            <script src='<?php echo $caminho;?>/vendor/fontawesome-free-5.15.4-web/js/all.js' type='text/javascript'></script>
+        <?php }else if(LIB_FA == 6){ ?>
+            <link href="<?php echo $caminho;?>/vendor/fontawesome-free-6.1.2-web/css/all.css" rel="stylesheet">
+            <script src='<?php echo $caminho;?>/vendor/fontawesome-free-6.1.2-web/js/all.js' type='text/javascript'></script>
+        <?php } ?>
     <?php } ?>
-    <?php if(defined('LIB_FA') and  LIB_FA == 4 ){ ?><link href="<?php echo $caminho;?>/vendor/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"><?php } ?>
+
     <?php if(defined('LIB_CSS_NO_PRINT') and  LIB_CSS_NO_PRINT ){ ?><link href="<?php echo $caminho;?>/vendor/mavalerio/css/noPrint.css" rel="stylesheet"><?php } ?>
     <?php if(defined('LIB_CSS_MOBILE') and  LIB_CSS_MOBILE ){ ?><link href="<?php echo $caminho;?>/vendor/mavalerio/css/mobile.css" rel="stylesheet"><?php } ?>
     <!-- CSS DO SISTEMA -->

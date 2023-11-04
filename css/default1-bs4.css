@@ -4,9 +4,6 @@
 * @copyleft GPLv3
 */
 
-/* Override browser default */
-*{ font-family:Tahoma,Verdana,Serif;}
-
 /* Override Bootstrap */
 .fa-20px{font-size: 20px;}
 .dropdown-menu{position:fixed !important;}

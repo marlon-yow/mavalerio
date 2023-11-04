@@ -1,0 +1,35 @@
+{
+    // ### screenHelper-bs4.js ### * @version 0.0.0.5 [2021-dez-06]
+	"BS4 geraAvisoOKModal": {
+        "prefix":"geraAvisoOKModal-JS",
+        "body": "geraAvisoOKModal(${1:titulo},${2:recheio});"
+	},
+    "BS4 excluir": {
+        "prefix":"excluir-JS",
+        "body": "excluir(${1:id},${2:txt},${3:obj});"
+	},
+    "BS4 divmodalStart": {
+        "prefix":"divmodalStart-JS",
+        "body": "divmodalStart(${1:titulo},${2:recheio},${3:buttonText},${4:buttonOnclick},${5:footerMessage});"
+	},
+    "BS4 divmodalHide": {
+        "prefix":"divmodalHide-JS",
+        "body": "divmodalHide();"
+	},
+    "BS4 divmodalMessage": {
+        "prefix":"divmodalMessage-JS",
+        "body": "divmodalMessage(${1:txt});"
+	},
+    "BS4 paginacaoJS": {
+        "prefix":"paginacao-JS",
+        "body": "paginacaoJS(${1:pagina},${2:quantreg},${3:registrosPorPagina},${4:funcao});"
+	},
+    "BS4 validarCampoCPF": {
+        "prefix":"validarCampoCPF-JS",
+        "body": "validarCampoCPF(${1:idInput});"
+	},
+    "BS4 validarCampoCNPJ": {
+        "prefix":"validarCampoCNPJ-JS",
+        "body": "validarCampoCNPJ(${1:idInput});"
+	},
+}

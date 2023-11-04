@@ -1,0 +1,83 @@
+{
+    // ### DateEn.js ### * @version 0.0.0.7 [2023-jan-26]
+	"JS-DateEn getDataText": {
+        "prefix":"getDataText-JS",
+        "body": "DataEn.getDataText();"
+	},
+    "JS-DateEn getTimeText": {
+        "prefix":"getTimeText-JS",
+        "body": "DataEn.getTimeText();"
+	},
+    "JS-DateEn getDia": {
+        "prefix":"getDia-JS",
+        "body": "DataEn.getDia();"
+	},
+    "JS-DateEn getMes": {
+        "prefix":"getMes-JS",
+        "body": "DataEn.getMes();"
+	},
+    "JS-DateEn getAno": {
+        "prefix":"getAno-JS",
+        "body": "DataEn.getAno();"
+	},
+    "JS-DateEn getHora": {
+        "prefix":"getHora-JS",
+        "body": "DataEn.getHora(${1:noSecs});"
+	},
+    "JS-DateEn obj data To Str": {
+        "prefix":"dataToStr-JS",
+        "body": "DataEn.dataToStr(${1:objDateEn});"
+	},
+    "JS-DateEn str To Obj DataEn": {
+        "prefix":"strToData-JS",
+        "body": "DataEn.strToData(${1:str});"
+	},
+    "JS-DateEn normaliza Data": {
+        "prefix":"normalizaData-JS",
+        "body": "DataEn.normalizaData(${1:str});"
+	},
+    "JS-DateEn valida Data": {
+        "prefix":"validaData-JS",
+        "body": "DataEn.validaData(${1:str});"
+	},
+    "JS-DateEn add Dias": {
+        "prefix":"addDias-JS",
+        "body": "DataEn.addDias(${1:dataBaseStr},${2:dias});"
+	},
+    "JS-DateEn add Mes": {
+        "prefix":"addMes-JS",
+        "body": "DataEn.addMes(${1:dataBaseStr},${2:meses});"
+	},
+    "JS-DateEn get Dia da Semana": {
+        "prefix":"getDiaSemana-JS",
+        "body": "DataEn.getDiaSemana(${1:dataStr});"
+	},
+    "JS-DateEn isDiaUtil": {
+        "prefix":"isDiaUtil-JS",
+        "body": "DataEn.isDiaUtil(${1:dataStr});"
+	},
+    "JS-DateEn diffDeDias": {
+        "prefix":"diffDeDias-JS",
+        "body": "DataEn.diffDeDias(${1:dataMaiorStr},${2:dataMenorStr);"
+	},
+    "JS-DateEn diffDeHoras": {
+        "prefix":"diffDeHoras-JS",
+        "body": "DataEn.diffDeHoras(${1:horaMaiorStr},${2:horaMenorStr);"
+	},
+    "JS-DateEn dataVenceu": {
+        "prefix":"dataVenceu-JS",
+        "body": "DataEn.dataVenceu(${1:dataStr});"
+	},
+    "JS-DateEn dataEmSegundos": {
+        "prefix":"dataEmSegundos-JS",
+        "body": "DataEn.dataEmSegundos(${1:dataStr});"
+	},
+    "JS-DateEn time_elapsed_B - segundos para human read": {
+        "prefix":"time_elapsed_B-JS",
+        "body": "DataEn.time_elapsed_B(${1:segundos});"
+	},
+    "JS-DateEn dataPadraoBR": {
+        "prefix":"dataPadraoBR-JS",
+        "body": "DataEn.dataPadraoBR(${1:dataStr});"
+	}
+}

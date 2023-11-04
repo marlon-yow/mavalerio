@@ -21,24 +21,44 @@
 
     /** Funcao que apresenta mensagem de feedback na tela (requere jqueryToast)
     *    @parameter mixed
-    *    @parameter mixed corDoAviso usar toast.types.{VERMELHO,AZUL,VERDE}
+    *    @parameter mixed corDoAviso usar toast.types.{VERMELHO,AZUL,VERDE,AMARELO}
     *    @parameter mixed permanenciaDoAviso usar toast.sticky.{FICAR, APAGAR}
     */
     function mensagemDeCanto(message, type, keep){
         var options = {
             duration: 5001,
             sticky: keep,
-            type: type
+            type: type,
+            text:  message,
         };
-        $.toast(message, options);
+
+        if(keep){
+            options['hideAfter'] = false;
+        }
+
+        switch (type) {
+            case 'VERDE':
+                //options['heading'] = 'Success';
+                options['icon'] = 'success';
+                break;
+            case 'VERMELHO':
+                //options['heading'] = 'Error';
+                options['icon'] = 'error';
+                break;
+            case 'AZUL':
+                //options['heading'] = 'Information';
+                options['icon'] = 'info';
+                break;
+            case 'AMARELO':
+                //options['heading'] = 'Warning';
+                options['icon'] = 'warning';
+                break;
+        }
+
+
+        $.toast(options);
     }
 
     toast = new Object;
-    toast.types = {VERMELHO:'danger',AZUL:'info',VERDE:'success'}
+    toast.types = {VERMELHO:'VERMELHO',AZUL:'AZUL',VERDE:'VERDE',AMARELO:'AMARELO'}
     toast.sticky = { FICAR:true, APAGAR:false}
-    $(document).ready(function(){
-        if($.toast){
-            $.toast.config.align = 'center';
-            $.toast.config.width = 400;
-        }
-    });

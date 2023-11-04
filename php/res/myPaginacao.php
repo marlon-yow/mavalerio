@@ -7,12 +7,19 @@
 
     if(!$quantreg and $quantReg) $quantreg = $quantReg;
 
-    if(defined('LIB_BS') and LIB_BS == 4){ require_once (__DIR__.'/paginacao/_paginacao_bs4.php'); }
-    if(defined('LIB_BS') and LIB_BS == 3){ require_once (__DIR__.'/paginacao/_paginacao_bs3.php'); }
+    if(defined('LIB_BS')){
+        if(file_exists(__DIR__.'/paginacao/_paginacao_bs'.LIB_BS.'.php')){
+            require_once (__DIR__.'/paginacao/_paginacao_bs'.LIB_BS.'.php');
+        }else{
+            echo "Arquivo não encontrado: ".__DIR__.'/paginacao/_paginacao_bs'.LIB_BS.'.php';
+            echo __FILE__.":".__LINE__;
+            die;
+        }
+    }
 
 if(isset($_GET)){ ?>
     <script type="text/javascript">
-        get = <?php echo json_encode($FUN->utf8Encode($_GET));?>
+        get = <?php echo json_encode($_GET);?>
 
         $.each(get,function(i,itm){
             $('#'+i).val(itm);

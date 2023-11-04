@@ -4,13 +4,15 @@
 * @version 0.0.0.2 [2021-jun-11]
 * @copyleft GPLv3
 */
-function debug($var, $die= true){
+function debug($var, $die= true, $trace = true, $type = true){
     echo "<pre>";
     print_r($var);
     echo "\n\n";
     //echo __FILE__.":".__LINE__."\n\n";
-    debug_print_backtrace ();
+    if($type){ echo "TIPO: ".gettype($var)."\n"; }
+    if($trace){ echo "TRACE:\n"; debug_print_backtrace (); }
     if($die) die;
+    echo "</pre>";
 }
 
 
@@ -19,6 +21,7 @@ function myErrorHandler($errno, $errstr, $errfile, $errline){
     if(substr($errstr,0,18) == "Undefined variable") return true;
     if(substr($errstr,0,19) == "Undefined array key") return true;
     if(substr($errstr,0,51) == "Trying to access array offset on value of type null") return true;
+    if(substr($errstr,0,23) == "gzinflate(): data error") return true;
 
     return false;
 }

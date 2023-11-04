@@ -1,0 +1,681 @@
+# sem manutenção desde 2022
+# JS
+# JSU para Utils.js
+# DATEJS para date.js
+# MDCJS para mensagemDeCanto.js
+# BSU para bootstrap-utils
+# UD para user defined
+## PHP
+# UD para user defined
+# FUN para funcoes.php
+# DB para banco.php
+# BS bootstrap
+
+
+'.php':
+    ### UTILS.js ###
+    'JSU showMenu':
+        'prefix':'showMenu'
+        'body':"showMenu(${1:DomObj},${2:divMenuName});"
+    'JSU Size This - Resize Textarea':
+        'prefix':'sz()'
+        'body':"sz(this);"
+    'JSU Get Size Textarea':
+        'prefix':'testTextAreaSize()'
+        'body':'''<textarea name='${1:nameId}' id='${1:nameId}' onclick='sz(this)' maxlength="255" onkeyup='$("#${2:tobslimit}").html(testTextAreaSize(this))'></textarea>
+        <span id='${2:tobslimit}'>0</span>'''
+    'JSU Clear Table':
+        'prefix':'clearTable'
+        'body':"clearTable(${1:tbName},${2:numRows});"
+    'JSU Impedir Fechamento Do Formulario Sem Salvar':
+        'prefix':'impedirFechamentoFormulario'
+        'body':"impedirFechamentoFormulario();"
+    'JSU Troca Enter Por Tab':
+        'prefix':'trocaEnterPorTab'
+        'body':"trocaEnterPorTab();"
+    #* DOCUMENTOS *#
+    'JSU Validar CPF':
+        'prefix':'ValidarCPF'
+        'body':"ValidarCPF(${1:cpf});"
+    'JSU Validar CNPJ':
+        'prefix':'ValidarCNPJ'
+        'body':"ValidarCNPJ(${1:cnpj});"
+    'JSU Validar CPF - CNPJ':
+        'prefix':'ValidarCPFCNPJ'
+        'body':"ValidarCPFCNPJ(${1:doc});"
+    #*** TEXTO **#
+    'JSU First Word':
+        'prefix':'firstWord'
+        'body':"firstWord(${1:txt},${2:chr});"
+    #*** NUMEROS **#
+    'JSU Trunca De Verdade':
+        'prefix':'truncaDeVerdade'
+        'body':"truncaDeVerdade(${1:numero},,${2:casas});"
+    'JSU Pad com Zero':
+        'prefix':'pad'
+        'body':"pad(${1:numero},${2:length},${3:padWith='0'},${4:pad_type=STR_PAD_LEFT});"
+    'JSU Prevent Coma - Sem Virgula no campo':
+        'prefix':'preventComa'
+        'body':"preventComa(this);"
+    'JSU moneyMask':
+        'prefix':'moneyMask'
+        'body':"moneyMask(${1:num});"
+    'JSU somenteNumeros':
+        'prefix':'JSsomenteNumeros'
+        'body':"somenteNumeros(${1:num});"
+    'JSU copiaObj':
+        'prefix':'copiaObj'
+        'body':"copiaObj(${1:obj});"
+    ### DATE.JS ###
+    'DATEJS getHora':
+        'prefix':'getHora'
+        'body':"getHora(${1:full});"
+    'DATEJS getDia':
+        'prefix':'getDia'
+        'body':"getDia();"
+    'DATEJS dataToStr':
+        'prefix':'dataToStr'
+        'body':"dataToStr(${1:objData});"
+    'DATEJS strToData':
+        'prefix':'strToData'
+        'body':"strToData(${1:data});"
+    'DATEJS hora2inteiro':
+        'prefix':'hora2inteiro'
+        'body':"hora2inteiro(${1:hora});"
+    'DATEJS inteiro2hora':
+        'prefix':'inteiro2hora'
+        'body':"inteiro2hora(${1:hora});"
+    'DATEJS addDias':
+        'prefix':'addDias'
+        'body':"addDias(${1:data},${2:qtdDias});"
+    'DATEJS addMes':
+        'prefix':'addMes'
+        'body':"addMes(${1:data},${2:qtdMes});"
+    'DATEJS validaData':
+        'prefix':'validaData'
+        'body':"validaData(${1:data});"
+    'DATEJS getDiaSemana':
+        'prefix':'getDiaSemana'
+        'body':"getDiaSemana(${1:data});"
+    'DATEJS diaUtil':
+        'prefix':'diaUtil'
+        'body':"diaUtil(${1:data});"
+    'DATEJS diffDeDias':
+        'prefix':'diffDeDias d1 - d2'
+        'body':"diffDeDias(${1:data},${2:data2});"
+    'DATEJS dataVenceu':
+        'prefix':'dataVenceu'
+        'body':"dataVenceu(${1:data});"
+    ## MENSAGEM DE CANTO.js ##
+    'MDCJS mensagemDeCanto':
+        'prefix':'mensagemDeCanto'
+        'body':"mensagemDeCanto(${1:message},${2:toast.types.VERMELHO},${2:toast.sticky.APAGAR});"
+    ## BS-utils.js ##
+    'BSU geraAvisoOKModal':
+        'prefix':'geraAvisoOKModal'
+        'body':"geraAvisoOKModal(${1:titulo},${2:recheio});"
+    'BSU excluir':
+        'prefix':'excluir'
+        'body':"excluir(${1:id},${2:txt},${3:obj});"
+    'BSU divmodalStart':
+        'prefix':'divmodalStart'
+        'body':"divmodalStart(${1:titulo},${2:recheio},${3:buttonText},${4:buttonOnclick},${5:footerMessage});"
+    'BSU divmodalHide':
+        'prefix':'divmodalHide'
+        'body':"divmodalHide();"
+    'BSU divmodalMessage':
+        'prefix':'divmodalMessage'
+        'body':"divmodalMessage(${1:txt});"
+    'BSU paginacaoJS':
+        'prefix':'paginacaoJS'
+        'body':"paginacaoJS(${1:pagina},${2:quantreg},${3:registrosPorPagina},${4:funcao});"
+    ## User DEFINED ##
+    'UD HAlt Compiler':
+        'prefix': '__halt_compiler'
+        'body': '<?php __halt_compiler();'
+    'BS-UD Tabela Zebrada':
+        'prefix':'bstable'
+        'body':"<table class='table table-striped table-hover'>"
+    'BS-UD Linha Formulario':
+        'prefix':'formgroup'
+        'body':'''
+        <div class="form-group">
+            <label class='col-sm-4 control-label'></label>
+            <div class="col-sm-8">
+                <input type='text' name='${1}' id='${2}' value='<?php echo \$rw['${3}'];?>'>
+            </div>
+        </div>'''
+    'BS-UD Formulario':
+        'prefix':'bsform'
+        'body':'''
+        <form action='' method='post'>
+            <input type='hidden' name='id' id='id' value='<?php echo $id;?>' />
+
+            <div class='well' style='display:table'>
+                <div class="form-group">
+                    <div class="col-sm-12 row">
+                        <label class='col-sm-4 control-label'></label>
+                        <div class="col-sm-8"></div>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type='submit' class='btn btn-primary' value='Salvar'>
+                    </div>
+                </div>
+            </div>
+        </form>'''
+    'BS4-UD Formulario':
+        'prefix':'bsform4'
+        'body':'''
+        <form action='' method='post'>
+            <input type='hidden' name='id' id='id' value='<?php echo $id;?>' />
+
+            <div class='card' style='display:table'>
+                <div class="form-group">
+                    <div class="col-12 row">
+                        <label class='col-4 control-label'></label>
+                        <div class="col-8"></div>
+                    </div>
+                    <div class="col-12">
+                        <input type='submit' class='btn btn-primary' value='Salvar'>
+                    </div>
+                </div>
+            </div>
+        </form>'''
+    'JS-UD Timeout (uma vez)':
+        'prefix':'timeout'
+        'body':'setTimeout(function(){ ${1:alert("Hello")}; }, ${2:3000});'
+    'JS-UD redireciona':
+        'prefix':'redirect'
+        'body':'<script> location.href=\'goToPage.php?<?php echo "id=$id";?>\';</script>'
+    'UD Textarea':
+        'prefix':'textarea2'
+        'body': "<textarea name='${1}' id='${2}' cols='50' rows='3' onclick='sz(this)'><?php echo ${3};?></textarea>"
+    'UD Debug':
+        'prefix':'debug'
+        'body': "debug(${1:\$var});"
+
+'.source.php':
+    # DATA BASE banco;php #
+    'DB Get Connection':
+      'prefix':'getCon'
+      'body':"\$db->getCon();"
+    'DB Query':
+      'prefix':'query'
+      'body':'\$db->query(${1:\$param});'
+    'DB SQL Date':
+      'prefix':'sqldate'
+      'body':"\$db->sqldate(${1:\$param}, 'DD/MM/YYYY HH24:MI:SS');"
+    'DB Valida Data':
+      'prefix':'validaData'
+      'body':"\$db->validaData(${1:\$dt});"
+    'DB Valida Hora':
+       'prefix':'validaHora'
+       'body':"\$db->validaHora(${1:\$hr});"
+    'DB validaNumero':
+       'prefix':'validaNumero'
+       'body':"\$db->validaNumero(${1:\$nr});"
+    'DB Quantidade de Registros':
+        'prefix':'quantReg'
+        'body':'\$quantreg = \$db->getQuantReg(${1:\$param});'
+    'DB Paginação':
+        'prefix':'paginado'
+        'body':'\$db->paginado(${1:\$param}, \$inicial, \$final);'
+    'DB Fetch':
+        'prefix':'fetch'
+        'body':'\$db->fetch(\$sql);'
+    'DB SQL NextId':
+      'prefix':'nextid'
+      'body':"\$db->getNextId(${1:ESQUEMA.SEQ_XXXX.NEXTVAL});"
+    'DB Seleciona (Andre)':
+        'prefix':'seleciona-Andre'
+        'body':'\$db->seleciona(\$query);'
+    'DB Comitar (Andre)':
+        'prefix':'comitar-Andre'
+        'body':'\$db->comitar();'
+    'DB ModificarBD (Andre)':
+        'prefix':'modificarBD-Andre'
+        'body':'\$db->modificarBD(\$query);'
+    'DB modificarBDBlob (Andre)':
+        'prefix':'modificarBDBlob-Andre'
+        'body':'\$db->modificarBDBlob(\$query,\$variavel);'
+    'DB insere (Andre)':
+        'prefix':'insere-Andre'
+        'body':'\$db->insere(\$query);'
+    'DB altera (Andre)':
+        'prefix':'altera-Andre'
+        'body':'\$db->altera(\$query);'
+    'DB exclui (Andre)':
+        'prefix':'exclui-Andre'
+        'body':'\$db->exclui(\$query);'
+
+    # DATA BASE Skeleton
+    'This DB Get Connection':
+      'prefix':'getConThis'
+      'body':"\$this->db->getCon();"
+    'This DB Query':
+      'prefix':'queryThis'
+      'body':'\$this->db->query(${1:\$param});'
+    'This DB SQL Date':
+      'prefix':'sqldateThis'
+      'body':"\$this->db->sqldate(${1:\$param}, 'DD/MM/YYYY HH24:MI:SS');"
+    'This DB Valida Data':
+      'prefix':'validaDataThis'
+      'body':"\$this->db->validaData(${1:\$dt});"
+    'This DB Valida Hora':
+       'prefix':'validaHoraThis'
+       'body':"\$this->db->validaHora(${1:\$hr});"
+    'This DB validaNumero':
+       'prefix':'validaNumeroThis'
+       'body':"\$this->db->validaNumero(${1:\$nr});"
+    'This DB Quantidade de Registros':
+        'prefix':'quantRegThis'
+        'body':'\$quantreg = \$this->db->getQuantReg(${1:\$param});'
+    'This DB Paginação':
+        'prefix':'paginadoThis'
+        'body':'\$this->db->paginado(${1:\$param}, \$inicial, \$final);'
+    'This DB Fetch':
+        'prefix':'fetchThis'
+        'body':'\$this->db->fetch(\$sql);'
+    'This DB SQL NextId':
+      'prefix':'nextidThis'
+      'body':"\$this->db->getNextId(${1:ESQUEMA.SEQ_XXXX.NEXTVAL});"
+
+    # ------ INICIO DA CLASSE FUN------#
+    #**TEXTO**#
+    'FUN Ultimo Item da string':
+        'prefix':'endExplode'
+        'body':'\$FUN->endExplode(${1:\$arg}, ${2:\$var});'
+    'FUN Primeiro Nome da string':
+        'prefix':'firstword'
+        'body': "\$FUN->firstword(${1:\$nomew}, ${2:\$arg=' '});"
+    'FUN Primeiro Item da string':
+        'prefix':'homeExplode'
+        'body':'\$FUN->homeExplode(${1:\$arg}, ${2:\$var});'
+    'FUN Pad - Preencher com char':
+        'prefix':'pad'
+        'body':'\$FUN->pad(${1:\$var},${2:\$numChar},{3:\$pad_type=STR_PAD_LEFT});'
+    'FUN RPad - Preencher com char à direita':
+        'prefix':'rpad'
+        'body':'\$FUN->rpad(${1:\$str},${2:\$numChar},${3:add 5 espacos no fim = false});'
+    'FUN LPad - Preencher com char à esquerda':
+        'prefix':'lpad'
+        'body':'\$FUN->lpad(${1:\$str},${2:\$numChar},${3:add 5 espacos no inicio = false});'
+    'FUN Repeat - Preencher string com repeticao dela msm':
+        'prefix':'repeat'
+        'body':'\$FUN->repeat(${1:\$str},${2:\$numChar});'
+    'FUN Protect':
+        'prefix':'protect'
+        'body':'\$FUN->protect(${1:\$var});'
+    'FUN Remove Espacos Duplicados Entre Palavras':
+        'prefix':'removeEspacosDuplicadosEntrePalavras'
+        'body':'\$FUN->removeEspacosDuplicadosEntrePalavras(${1:\$txt});'
+    'FUN Somente Letras':
+        'prefix':'somenteLetras'
+        'body':'\$FUN->somenteLetras(${1:\$txt});'
+    'FUN Somente Letras E Espacos':
+        'prefix':'\$FUN->somenteLetrasEEspacos'
+        'body':'somenteLetrasEEspacos(${1:\$txt});'
+    'FUN Somente Numeros':
+        'prefix':'somenteNumerosPHP'
+        'body':'\$FUN->somenteNumeros(${1:\$txt});'
+    'FUN Somente Letras E Numeros':
+        'prefix':'somenteLetrasENumeros'
+        'body':'\$FUN->somenteLetrasENumeros(${1:\$txt});'
+    'FUN Somente Letras Numeros Espacos Chars':
+        'prefix':'somenteLetrasNumerosEspacosEChars'
+        'body':'\$FUN->somenteLetrasNumerosEspacosEChars(${1:\$txt});'
+    'FUN Remove Acentos':
+        'prefix':'tirarAcentos'
+        'body':'\$FUN->tirarAcentos(${1:\$txt});'
+    'FUN Formatar Nome':
+        'prefix':'formatarNome'
+        'body':'\$FUN->formatarNome(${1:\$txt});'
+    'FUN Testar se é JSON':
+        'prefix':'isJson'
+        'body':'\$FUN->isJson(${1:\$txt})'
+    #**NUMEROS**#
+    'FUN Mascara de Numero':
+        'prefix':'mask'
+        'body':'\$FUN->mask(${1:\$num},${2:"CPF/CNPJ/CEP/RG"});'
+    'FUN Dinheiro Print':
+        'prefix':'dinheiroPrint'
+        'body': '\$FUN->dinheiroPrint(${1:\$valor}, ${2:\$casasDescimais=2});'
+    'FUN Dinheiro sem Mascara':
+        'prefix':'dinheiroSemMascara'
+        'body':'\$FUN->dinheiroSemMascara(${1:\$valor});'
+    'FUN Somente Numeros Pontos e Virgulas':
+        'prefix':'somenteNumerosPontosEVirgulas'
+        'body':'\$FUN->somenteNumerosPontosEVirgulas(${1:\$valor});'
+    #** CRIPTO **#
+    'FUN - Hashe Criptografia 5 digitos':
+        'prefix':'hashe'
+        'body':'\$FUN->hashe(\$val);'
+    #** CRIPTO **#
+    'FUN - Primeiro Item do Array':
+        'prefix':'firstitem'
+        'body':'\$FUN->firstitem(\$val);'
+    'FUN - Encodar Array UTF8 ':
+        'prefix':'utf8Encode'
+        'body':'\$FUN->utf8Encode(\$val);'
+    'FUN - Decodar Array UTF8':
+        'prefix':'utf8Decode'
+        'body':'\$FUN->utf8Decode(\$val);'
+    #** DATA **#
+    'FUN validaHora (Hora)':
+        'prefix':'validaHora'
+        'body':'\$FUN->validaHora(${1:\$hora});'
+    'FUN normalizaHora (Hora)':
+        'prefix':'normalizaHora'
+        'body':'\$FUN->normalizaHora(${1:\$hora});'
+    'FUN validaData (Data)':
+        'prefix':'validaData'
+        'body':'\$FUN->validaData(${1:\$data});'
+    'FUN normalizaData (Data)':
+        'prefix':'normalizaData'
+        'body':'\$FUN->normalizaData(${1:\$data});'
+    'FUN dataPadraoBR (Data)':
+        'prefix':'dataPadraoBR'
+        'body':'\$FUN->dataPadraoBR(${1:\$data});'
+    'FUN Data Venceu (Data)':
+        'prefix':'dataVenceu'
+        'body':'\$FUN->dataVenceu(${1:\$data});'
+    'FUN diaDaSemana (Data)':
+        'prefix':'diaDaSemana'
+        'body':'\$FUN->diaDaSemana(${1:\$data});'
+    'FUN diferencaDias (Data1, Data2=null)':
+        'prefix':'diferencaDias'
+        'body':'\$FUN->diferencaDias(${1:\$data1},${2:\$data2=null});'
+    'FUN diferencaHoras (Hora1 - Hora2)':
+        'prefix':'diferencaHoras'
+        'body':'\$FUN->diferencaHoras(${1:\$hora1},${2:\$hora2});'
+    'FUN finaliza cronometro do script ($inicio=time())':
+        'prefix':'endTime'
+        'body':'\$FUN->endTime(${1:\$inp});'
+    'FUN Get Mes Nome/Numero':
+        'prefix':'getMes'
+        'body':'\$FUN->getMes(${1:\$mes});'
+    'FUN Tempo Human read ($secs)':
+        'prefix':'time_distance'
+        'body':'\$FUN->time_distance(${1:\$secs});'
+    'FUN DiferencaDias Human Read (Data1, Data2=null)':
+        'prefix':'getTempoDistancia'
+        'body':'\$FUN->getTempoDistancia(${1:\$data1},${2:\$data2=null});'
+    #** DOCUMENTO **#
+    'FUN Fix Placa':
+        'prefix':'fixPlaca'
+        'body':'\$FUN->fixPlaca(${1:\$placa});'
+    'FUN Proteger sistema de Email mal digitado':
+        'prefix':'protectMail'
+        'body':'\$FUN->protectMail(${1:\$var});'
+    'FUN Embaralhar Email':
+        'prefix':'embaralhaEmail'
+        'body':'\$FUN->embaralhaEmail(${1:\$var});'
+    'FUN Protect Nome':
+        'prefix':'protectNome'
+        'body':'\$FUN->protectNome(${1:\$var});'
+    #** VALIDACOES **#
+    'FUN Valida Email':
+        'prefix':'validaEmail'
+        'body':'\$FUN->validaEmail(${1:\$str});'
+    'FUN Valida Nome':
+        'prefix':'validaNome'
+        'body':'\$FUN->validaNome(${1:\$str});'
+    'FUN Valida CPF-CNPJ':
+        'prefix':'validarCPFCNPJ'
+        'body':'\$FUN->validarCPFCNPJ(${1:\$str});'
+    'FUN Valida CPF':
+        'prefix':'validarCPF'
+        'body':'\$FUN->validarCPF(${1:\$str});'
+    'FUN Valida CNPJ':
+        'prefix':'validarCNPJ'
+        'body':'\$FUN->validarCNPJ(${1:\$str});'
+    #**LINK**#
+    'FUN pega o URL com os gets':
+        'prefix':'getLinkGet'
+        'body':'\$FUN->getLinkGet(${1:\$arrRemove});'
+    #** AUTORIZACAO **#
+    'FUN requerirPermissao':
+        'prefix':'requerirPermissao'
+        'body':'\$FUN->requerirPermissao(${1:array() ou string});'
+    # ------ FIM DA CLASSE FUN------#
+
+    ### FUNCOES.php ###
+    #** DATA **#
+    'FN Dia da Semana - Nome/Numero':
+        'prefix':'diaDaSemana'
+        'body':'diaDaSemana(${1:\$data});'
+    'FN Get Tempo Decorrido - Human Read':
+        'prefix':'getTempo'
+        'body':'getTempo(${1:\$data});'
+
+    ### USER DEFINED ###
+    'UD Globais':
+        'prefix':'global'
+        'body':'global $_SESSION,$appname,$FUN;'
+    'UD Breadcrumbs':
+        'prefix':'Breadcrumbs-UD'
+        'body':'''
+        \$breadcrumbs = array(
+            array('href'=>'','titulo'=>''),
+            array('href'=>'','titulo'=>''),
+        );'''
+    'UD logger($txt,$putdate=null,$lfcr=null)':
+        'prefix':'logger()'
+        'body':'logger(${1:\$txt},${2:\$putdate=null},${3:\$lfcr=null})'
+    'UD loggar($txt,$putdate=null,$lfcr=null)':
+        'prefix':'loggar()'
+        'body':'loggar(${1:\$txt},${2:\$putdate=false},${3:\$lfcr=true},${4:\$echo=false})'
+    'UD Array Map To Utf8':
+        'prefix':'array_map'
+        'body':"array_map('utf8_encode',${1:\$var});"
+    'UD Json Encode':
+        'prefix':'json_encode'
+        'body':"json_encode(${1:\$var});"
+    'UD Json Decode':
+        'prefix':'json_decode'
+        'body':"json_decode(${1:\$var},1);"
+
+    'UD requireFooter':
+        'prefix': 'requireFooter'
+        'body': 'require_once(RES."footer.php");'
+    'UD requireHead':
+        'prefix': 'requireHead'
+        'body': 'require_once(RES."head.php");'
+
+    'BS Modal Message Complete':
+        'prefix':"session_mensagem_complete"
+        'body':"\$_SESSION[\$appname]['mensagem']= array(${1:\$mensagem},${2:'VERMELHO/VERDE/AZUL/AMARELO'},${3:'APAGAR/FICAR'});"
+    'BS Modal Message Quik':
+        'prefix':"session_mensagem"
+        'body':"\$_SESSION[\$appname]['mensagem']= array(${1:\$mensagem},${2:'VERMELHO/VERDE/AZUL/AMARELO'});"
+
+    'LOG CustomLog Class':
+        'prefix': 'CustomLog'
+        'body': "\$CustomLog = new CustomLog(${1:\$logFolder},${2:\$logfile},${3:\$errorlogfile});"
+    'LOG CustomLog -> Logar':
+        'prefix': 'loggar'
+        'body': "\$CustomLog->loggar(${1:\$txt},${2:\$putdate=null},${3:\$lfcr=true},${4:\$echo=false});"
+    'LOG CustomLog -> clearError - Limpar cache por não dar erro':
+        'prefix': 'clearError'
+        'body': "\$CustomLog->clearError();"
+    'LOG CustomLog -> saveErrorLog - Salvar cache do erro':
+        'prefix': 'saveErrorLog'
+        'body': "\$CustomLog->saveErrorLog();"
+    'DNE getByCEP - Dados de CEP':
+        'prefix': 'getByCEP'
+        'body': "\$DNE->getByCEP(${1:\$cep}); //TIPO,RUA,BAIRRO,REGIONAL,CIDADE,UF"
+    'SQL UPSERT':
+        'prefix' : 'UPSERT'
+        'body': '''BEGIN
+                UPDATE tablename SET
+                    val1 = in_val1,
+                    val2 = in_val2
+                WHERE val3 = in_val3;
+
+                IF ( sql%rowcount = 0 ) THEN
+                INSERT INTO tablename
+                VALUES (in_val1, in_val2, in_val3);
+                END IF;
+                END;'''
+
+    'SK - Get Next Id:':
+        'prefix':'getNextId'
+        'body':'getNextId();'
+    'SK - Excluir - Lógico':
+        'prefix':'excluirSK'
+        'body':'excluir(${1:\$id},${2:nonLogicalExclusion=false});'
+    'SK - UPDATE Field:':
+        'prefix':'updateField'
+        'body': "updateField(${1:\$id},${2:\$campo},${3:\$dado=''},${4:\$tipo['NUMERO','TEXTO','RAW','DATE']},${5:\$mask='DD/MM/YYYY HH24:MI:SS'})"
+
+    'Method getById:':
+        'prefix': 'fungetById'
+        'body': '''public function getById($id){
+            global $db,$_SESSION,$appname;
+            if(!$id) return false;
+
+            $param = "SELECT
+
+                      FROM
+                      WHERE = $id";
+
+            $sql = $db->query($param);
+            $rw = $db->fetch($sql);
+            return $rw;
+        }'''
+
+    'Skeleton getByIdFromCache':
+        'prefix' : 'getByIdFromCache'
+        'body' : 'getByIdFromCache(${1:\$id});'
+    'Skeleton getById':
+        'prefix' : 'getById'
+        'body' : 'getById(${1:\$id});'
+
+    'UD Developer':
+        'prefix':'Developer'
+        'body': "if($_SERVER['HTTP_USER'] == 'Developer'){"
+
+'.js':
+    ### UTILS.js ###
+    'JSU showMenu':
+        'prefix':'showMenu'
+        'body':"showMenu(${1:DomObj},${2:divMenuName});"
+    'JSU Size This - Resize Textarea':
+        'prefix':'sz()'
+        'body':"sz(this);"
+    'JSU Get Size Textarea':
+        'prefix':'testTextAreaSize()'
+        'body':'''<textarea name='${1:nameId}' id='${1:nameId}' onclick='sz(this)' maxlength="255" onkeyup='$("#${2:tobslimit}").html(testTextAreaSize(this))'></textarea>
+        <span id='${2:tobslimit}'>0</span>'''
+    'JSU Clear Table':
+        'prefix':'clearTable'
+        'body':"clearTable(${1:tbName},${2:numRows});"
+    'JSU Impedir Fechamento Do Formulario Sem Salvar':
+        'prefix':'impedirFechamentoFormulario'
+        'body':"impedirFechamentoFormulario();"
+    'JSU Troca Enter Por Tab':
+        'prefix':'trocaEnterPorTab'
+        'body':"trocaEnterPorTab();"
+    #* DOCUMENTOS *#
+    'JSU Validar CPF':
+        'prefix':'ValidarCPF'
+        'body':"ValidarCPF(${1:cpf});"
+    'JSU Validar CNPJ':
+        'prefix':'ValidarCNPJ'
+        'body':"ValidarCNPJ(${1:cnpj});"
+    'JSU Validar CPF - CNPJ':
+        'prefix':'ValidarCPFCNPJ'
+        'body':"ValidarCPFCNPJ(${1:doc});"
+    #*** TEXTO **#
+    'JSU First Word':
+        'prefix':'firstWord'
+        'body':"firstWord(${1:txt},${2:chr});"
+    #*** NUMEROS **#
+    'JSU Trunca De Verdade':
+        'prefix':'truncaDeVerdade'
+        'body':"truncaDeVerdade(${1:numero},,${2:casas});"
+    'JSU Pad com Zero':
+        'prefix':'pad'
+        'body':"pad(${1:numero},,${2:length});"
+    'JSU Prevent Coma - Sem Virgula no campo':
+        'prefix':'preventComa'
+        'body':"preventComa(this);"
+    'JSU moneyMask':
+        'prefix':'moneyMask'
+        'body':"moneyMask(${1:num});"
+    'JSU somenteNumeros':
+        'prefix':'somenteNumeros'
+        'body':"somenteNumeros(${1:num});"
+    'JSU copiaObj':
+        'prefix':'copiaObj'
+        'body':"copiaObj(${1:obj});"
+    ### DATE.JS ###
+    'DATEJS getHora':
+        'prefix':'getHora'
+        'body':"getHora(${1:full});"
+    'DATEJS getDia':
+        'prefix':'getDia'
+        'body':"getDia();"
+    'DATEJS dataToStr':
+        'prefix':'dataToStr'
+        'body':"dataToStr(${1:objData});"
+    'DATEJS strToData':
+        'prefix':'strToData'
+        'body':"strToData(${1:data});"
+    'DATEJS hora2inteiro':
+        'prefix':'hora2inteiro'
+        'body':"hora2inteiro(${1:hora});"
+    'DATEJS inteiro2hora':
+        'prefix':'inteiro2hora'
+        'body':"inteiro2hora(${1:hora});"
+    'DATEJS addDias':
+        'prefix':'addDias'
+        'body':"addDias(${1:data},${2:qtdDias});"
+    'DATEJS addMes':
+        'prefix':'addMes'
+        'body':"addMes(${1:data},${2:qtdMes});"
+    'DATEJS validaData':
+        'prefix':'validaData'
+        'body':"validaData(${1:data});"
+    'DATEJS getDiaSemana':
+        'prefix':'getDiaSemana'
+        'body':"getDiaSemana(${1:data});"
+    'DATEJS diaUtil':
+        'prefix':'diaUtil'
+        'body':"diaUtil(${1:data});"
+    'DATEJS diffDeDias':
+        'prefix':'diffDeDias d1 - d2'
+        'body':"diffDeDias(${1:data},${2:data2});"
+    'DATEJS dataVenceu':
+        'prefix':'dataVenceu'
+        'body':"dataVenceu(${1:data});"
+    ## MENSAGEM DE CANTO.js ##
+    'MDCJS mensagemDeCanto':
+        'prefix':'mensagemDeCanto'
+        'body':"mensagemDeCanto(${1:message},${2:toast.types.VERMELHO},${2:toast.sticky.APAGAR});"
+    ## BS-utils.js ##
+    'BSU geraAvisoOKModal':
+        'prefix':'geraAvisoOKModal'
+        'body':"geraAvisoOKModal(${1:titulo},${2:recheio});"
+    'BSU excluir':
+        'prefix':'excluir'
+        'body':"excluir(${1:id},${2:txt},${3:obj});"
+    'BSU divmodalStart':
+        'prefix':'divmodalStart'
+        'body':"divmodalStart(${1:titulo},${2:recheio},${3:buttonText},${4:buttonOnclick},${5:footerMessage});"
+    'BSU divmodalHide':
+        'prefix':'divmodalHide'
+        'body':"divmodalHide();"
+    'BSU divmodalMessage':
+        'prefix':'divmodalMessage'
+        'body':"divmodalMessage(${1:txt});"
+    'BSU paginacaoJS':
+        'prefix':'paginacaoJS'
+        'body':"paginacaoJS(${1:pagina},${2:quantreg},${3:registrosPorPagina},${4:funcao});"
+    ## User DEFINED ##
+    'JS-UD Timeout (uma vez)':
+        'prefix':'timeout'
+        'body':'setTimeout(function(){ ${1:alert("Hello")}; }, ${2:3000});'
+    'JS-UD redireciona':
+        'prefix':'redirect'
+        'body':'<script> location.href=\'goToPage.php?<?php echo "id=$id";?>\';</script>'

@@ -1,0 +1,38 @@
+{
+	// ### mensagemDeCanto.js ###* @version 0.0.0.2 [2020-may-26]
+	"JS-MensDeCanto mensagemDeCanto": {
+        "prefix":"mensagemDeCanto-JS",
+        "body": "mensagemDeCanto(${1:message},${2:type},${3:keep});",
+        "description": "mensagem toast jquery"
+	},
+    "JS-MensDeCanto VERMELHO": {
+        "prefix":"VERMELHO-JS MDS",
+        "body": "toast.types.VERMELHO",
+        "description": "cor/tipo do toast"
+	},
+    "JS-MensDeCanto AZUL": {
+        "prefix":"AZUL-JS MDS",
+        "body": "toast.types.AZUL",
+        "description": "cor/tipo do toast"
+	},
+    "JS-MensDeCanto VERDE": {
+        "prefix":"VERDE-JS MDS",
+        "body": "toast.types.VERDE",
+        "description": "cor/tipo do toast"
+	},
+    "JS-MensDeCanto AMARELO": {
+        "prefix":"AMARELO-JS MDS",
+        "body": "toast.types.AMARELO",
+        "description": "cor/tipo do toast"
+	},
+    "JS-MensDeCanto FICAR": {
+        "prefix":"FICAR-JS MDS",
+        "body": "toast.stiky.FICAR",
+        "description": "permanecia do toast"
+	},
+    "JS-MensDeCanto APAGAR": {
+        "prefix":"APAGAR-JS MDS",
+        "body": "toast.stiky.APAGAR",
+        "description": "permanecia do toast"
+	}
+}

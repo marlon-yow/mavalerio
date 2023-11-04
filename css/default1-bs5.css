@@ -1,0 +1,22 @@
+/*! ---UTF-8---
+* @Autor Mavalerio https://orcid.org/0000-0003-2770-0624
+* @version 0.0.0.1 [2022-dez-02]
+* @copyleft GPLv3
+*/
+
+/* Override browser default */
+*{ font-family:Tahoma,Verdana,Serif;}
+
+/* Override Bootstrap */
+.dropdown-menu{position:fixed !important;}
+.btn-inverse{    color: #333;    background-color: #fff;    border-color: #ccc;}
+.text-bg-dark .btn-secondary {color: #fff !important;
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+}
+
+/************
+RODAPÉ
+************/
+#footer_content {margin:0 auto;border-top:#AAA 1px dashed;padding:0px;width:65%;height:30px;}
+#footer_texto {float: right;min-width: 275px;height: 28px;padding-top: 2px;font-size: 10px;color: #666;}

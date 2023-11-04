@@ -53,11 +53,11 @@
                 echo "<li><a>...</a></li><li><a href='".$PHP_SELF."?pg=$quant_pg$link'>$quant_pg</a></li>";
             }
 
-            // Verifica se esta na ultima página, se nao estiver ele libera o link para próxima
+            // Verifica se esta na ultima pï¿½gina, se nao estiver ele libera o link para prï¿½xima
             if (($pg+1) <= $quant_pg) {
-                echo "<li><a href='".$PHP_SELF."?pg=".($pg+1)."$link' aria-label='próximo' >";
+                echo "<li><a href='".$PHP_SELF."?pg=".($pg+1)."$link' aria-label='prï¿½ximo' >";
             } else {
-                    echo "<li class='disabled'><a href='#' aria-label='próximo'>";
+                    echo "<li class='disabled'><a href='#' aria-label='prï¿½ximo'>";
             }
             ?>
                     <span aria-hidden="true">&raquo;</span>
@@ -65,15 +65,3 @@
             </li>
     </ul>
 </div>
-
-<?php
-/*GET*/
-if($_GET){ ?>
-    <script type="text/javascript">
-        get = <?php echo json_encode(utf8Encode($_GET));?>
-
-        $.each(get,function(i,itm){
-            $('#'+i).val(itm);
-        })
-    </script>
-<?php }

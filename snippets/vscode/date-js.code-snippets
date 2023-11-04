@@ -1,0 +1,56 @@
+{
+    // ### date.js ### * @version 0.0.0.0 [2022] - SEM MANUTENCAO - USAR DateEn.js
+	// ### DATE.JS ###
+    "DATEJS getHora": {
+        "prefix":"getHora",
+        "body": "getHora(${1:full});"
+	},
+    "DATEJS getDia": {
+        "prefix":"getDia",
+        "body": "getDia();"
+	},
+    "DATEJS dataToStr": {
+        "prefix":"dataToStr",
+        "body": "dataToStr(${1:objData});"
+	},
+    "DATEJS strToData": {
+        "prefix":"strToData",
+        "body": "strToData(${1:data});"
+	},
+    "DATEJS hora2inteiro": {
+        "prefix":"hora2inteiro",
+        "body": "hora2inteiro(${1:hora});"
+	},
+    "DATEJS inteiro2hora": {
+        "prefix":"inteiro2hora",
+        "body": "inteiro2hora(${1:hora});"
+	},
+    "DATEJS addDias": {
+        "prefix":"addDias",
+        "body": "addDias(${1:data},${2:qtdDias});"
+	},
+    "DATEJS addMes": {
+        "prefix":"addMes",
+        "body": "addMes(${1:data},${2:qtdMes});"
+	},
+    "DATEJS validaData": {
+        "prefix":"validaData",
+        "body": "validaData(${1:data});"
+	},
+    "DATEJS getDiaSemana": {
+        "prefix":"getDiaSemana",
+        "body": "getDiaSemana(${1:data});"
+	},
+    "DATEJS diaUtil": {
+        "prefix":"diaUtil",
+        "body": "diaUtil(${1:data});"
+	},
+    "DATEJS diffDeDias": {
+        "prefix":"diffDeDias d1 - d2",
+        "body": "diffDeDias(${1:data},${2:data2});"
+	},
+    "DATEJS dataVenceu": {
+        "prefix":"dataVenceu",
+        "body": "dataVenceu(${1:data});"
+	}
+}

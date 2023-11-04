@@ -1,25 +1,25 @@
 /*! ---UTF-8---
 * @Autor Mavalerio https://orcid.org/0000-0003-2770-0624
-* @version 0.0.0.5 [2021-dez-06]
+* @version 0.0.0.1 [2022-dez-02]
 * @copyleft GPLv3
 */
-
-    divmodal = $('<div tabindex="-1" role="dialog">').addClass('modal fade').attr('id','divmodal');
+    var myModal = null;
     function genericModal(titulo,recheio,footer){
+        divmodal = $('#divmodal');
         divmodal.html('');
 
         divmodal
         .append(
-            $('<div role="document">').addClass('modal-dialog')
+            $('<div>').addClass('modal-dialog modal-dialog-scrollable')
             .append(
                 $('<div>').addClass('modal-content')
                 .append(
                     $('<div>').addClass('modal-header')
                     .append(
-                        $('<h3>').html(titulo)
+                        $('<h5>').addClass('modal-title').html(titulo)
                     )
                     .append(
-                        $('<button>').addClass('close').attr('data-dismiss',"modal").attr('aria-hidden',"true").html("&times;")
+                        $('<button>').addClass('btn-close').attr('data-bs-dismiss',"modal").attr('aria-label',"Close")
                     )
                 )
                 .append(
@@ -29,8 +29,10 @@
                     $('<div>').addClass('modal-footer').append(footer)
                 )
             )
-        )
-        .modal();
+        );
+
+        myModal = new bootstrap.Modal($('#divmodal')[0], {keyboard: false});
+        myModal.show();
     }
 
     /**
@@ -39,7 +41,7 @@
     *    @parameter mixed oQueVaiDentroDaJanela texto/html/objJquery
     */
     function geraAvisoOKModal(titulo,recheio){
-        var _footer = $('<button>').attr('data-dismiss',"modal").addClass('btn btn-primary').html('OK');
+        var _footer = $('<button>').attr('data-bs-dismiss',"modal").addClass('btn btn-primary').html('OK');
         genericModal(titulo,recheio,_footer);
     }
 
@@ -56,7 +58,7 @@
             "Essa operação não pode ser desfeita.</label>");
 
         var _footer = $('<div>')
-            .append( $('<button>').attr('data-dismiss',"modal").addClass('btn btn-primary').html('Não') )
+            .append( $('<button>').attr('data-bs-dismiss',"modal").addClass('btn btn-primary').html('Não') )
             .append(' ')
             .append($('<a/>').attr('href', obj+'_excluir.php?id='+id).addClass('btn btn-danger').html("Sim"));
 
@@ -81,7 +83,7 @@
 
         var rodape = $('<div>')
             .append( $('<span>').attr('id','divfootermodalmessage').append(footerMessage) )
-            .append( $('<button>').attr('data-dismiss',"modal").addClass('btn btn-defult').html('Fechar') )
+            .append( $('<button>').attr('data-bs-dismiss',"modal").addClass('btn btn-secondary').html('Fechar') )
             .append( btn );
 
         genericModal(titulo,recheio,rodape);
@@ -91,8 +93,7 @@
     *    Função que fecha janela modal com 1 e 2 botões
     */
     function divmodalHide(){
-        $('#divmodal').modal('hide');
-        $('.modal').modal('hide');
+        myModal.hide();
     }
 
     /**

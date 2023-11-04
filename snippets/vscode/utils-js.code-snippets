@@ -1,0 +1,102 @@
+{
+	// ### UTILS.js ### * @version 0.0.0.6 [2023-jan-26]
+    "JS-Utils DEBUG":{
+        "prefix":"utilsdebug",
+        "body": "Utils.dbg = true;"
+	},
+
+    // #* DOCUMENTOS *#
+    "JS-Utils Validar CPF":{
+        "prefix":"ValidarCPF-JS",
+        "body": "Utils.Documentos.isCPF(${1:cpf});"
+	},
+    "JS-Utils Validar CNPJ": {
+        "prefix":"ValidarCNPJ-JS",
+        "body": "Utils.Documentos.isCNPJ(${1:cnpj});"
+	},
+    "JS-Utils Validar CPF/CNPJ": {
+        "prefix":"ValidarCPF-CNPJ-JS",
+        "body": "Utils.Documentos.isCPFCNPJ(${1:doc});"
+	},
+    
+
+    //## parte de menus
+
+    "JS-Utils showMenu":{
+        "prefix":"showMenu",
+        "body": "showMenu(${1:DomObj},${2:divMenuName});",
+		"description": ""
+	},
+    "JS-Utils Size This - Resize Textarea": {
+        "prefix":"sz()",
+        "body": "sz(this);",
+		"description": ""
+	},
+    "JS-Utils Textarea com MaxSize e contador": {
+        "prefix":"textAreaMaxSize",
+        "body":[
+			"<textarea name='${1:nameId}' id='${1:nameId}' onclick='sz(this)' maxlength='${3:maxlength}' onkeyup='$(\"#${2:tobslimit}\").html(testTextAreaSize(this))'></textarea>",
+		    "<span id='${2:tobslimit}'>0</span>"
+		]
+	},
+    "JS-Utils contador de char de Textarea": {
+        "prefix":"contadorCaracteres",
+        "body":"contadorCaracteres(${1:idTextArea}, ${2:maxChar}, ${3:idSpan});"		
+	},
+    "JS-Utils Clear Table": {
+        "prefix":"clearTable",
+        "body": "clearTable(${1:idTabela},${2:numRowsPreservar});"
+	},
+    "JS-Utils Impedir Fechamento Do Formulario Sem Salvar": {
+        "prefix":"impedirFechamentoFormulario",
+        "body": "impedirFechamentoFormulario();"
+	},
+    "JS-Utils Troca Enter Por Tab": {
+        "prefix":"trocaEnterPorTab",
+        "body": "trocaEnterPorTab();"
+	},"JS-Utils formulario Somente Leitura": {
+        "prefix":"formularioSomenteLeitura",
+        "body": "formularioSomenteLeitura();"
+	},    
+    "JS-Utils Validar Nome": {
+        "prefix":"ValidarNome",
+        "body": "validarNome(${1:nome});"
+	},
+    // #*** TEXTO **#
+    "JS-Utils First Word": {
+        "prefix":"firstWord-JS",
+        "body": "firstWord(${1:txt},${2:chr});"
+	},
+    "JS-Utils somenteLetras": {
+        "prefix":"somenteLetras-JS",
+        "body": "somenteLetras(${1:str});"
+	},"JS-Utils somenteLetrasENumeros": {
+        "prefix":"somenteLetrasENumeros-JS",
+        "body": "somenteLetrasENumeros(${1:str});"
+	},
+    // #*** NUMEROS **#
+    "JS-Utils Trunca De Verdade":{
+        "prefix":"truncaDeVerdade-JS",
+        "body": "truncaDeVerdade(${1:numero},${2:casas});"
+	},
+    "JS-Utils Pad com Zero": {
+        "prefix":"pad-JS",
+        "body": "pad(${1:numero},${2:length});"
+	},
+    "JS-Utils Prevent Coma - Sem Virgula no campo": {
+        "prefix":"preventComa-JS",
+        "body": "preventComa(this);"
+	},
+    "JS-Utils moneyMask":{
+        "prefix":"moneyMask-JS",
+        "body": "moneyMask(${1:num});"
+	},
+    "JS-Utils somenteNumeros": {
+        "prefix":"somenteNumeros-JS",
+        "body": "somenteNumeros(${1:num});"
+	},
+    "JS-Utils copiaObj": {
+        "prefix":"copiaObj-JS",
+        "body": "copiaObj(${1:obj});"
+	}
+}

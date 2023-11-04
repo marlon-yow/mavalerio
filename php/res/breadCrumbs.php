@@ -6,7 +6,13 @@
 */
 if(isset($breadcrumbs)){
     $breadSize = sizeof($breadcrumbs)-1;
-    if(defined('LIB_BS') and LIB_BS == 4){ require_once (__DIR__.'/breadCrumbs/_breadCrumbs_bs4.php'); }
-    if(defined('LIB_BS') and LIB_BS == 3){ require_once (__DIR__.'/breadCrumbs/_breadCrumbs_bs3.php'); }
-    if(defined('LIB_BS') and LIB_BS == 2){ require_once (__DIR__.'/breadCrumbs/_breadCrumbs_bs2.php'); }
+    if(defined('LIB_BS')){
+        if(file_exists(__DIR__.'/breadCrumbs/_breadCrumbs_bs'.LIB_BS.'.php')){
+            require_once (__DIR__.'/breadCrumbs/_breadCrumbs_bs'.LIB_BS.'.php');
+        }else{
+            echo "Arquivo não encontrado: ".__DIR__.'/breadCrumbs/_breadCrumbs_bs'.LIB_BS.'.php';
+            echo __FILE__.":".__LINE__;
+            die;
+        }
+    }
 }

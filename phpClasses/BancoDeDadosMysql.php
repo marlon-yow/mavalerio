@@ -5,7 +5,9 @@
 * @copyleft
 */
 
-if (!class_exists('\BancoDeDadosMysql')) {
+namespace mavalerio\phpClasses;
+
+if (!class_exists('mavalerio\phpClasses\BancoDeDadosMysql')) {
 class BancoDeDadosMysql{
     //MYSQL
     var $usuario;
@@ -29,11 +31,11 @@ class BancoDeDadosMysql{
             $this->ECHO_SQL = true;
         }
 
-        $this->usuario = $u;
-        $this->senha = $p;
-        $this->servidor = $h;
-        $this->database = $d;
-        $this->porta = $porta;
+    	$this->usuario = $u;
+    	$this->senha = $p;
+    	$this->servidor = $h;
+    	$this->database = $d;
+    	$this->porta = $porta;
 
         if(!$this->usuario or !$this->senha or !$this->servidor or !$this->database){
             echo "Não tenho todos os dados para conectar: (Usu:$u,Senha:$p,Host:$h,Db:$d,Porta:$porta)";
@@ -238,10 +240,10 @@ class BancoDeDadosMysql{
         );
 
         foreach ($safe_words as $key => $sw) {
-            if( strtoupper(substr($dt,$sw[0],$sw[1])) == strtoupper($sw[2]) ){
-                return $dt;
+                if( strtoupper(substr($dt,$sw[0],$sw[1])) == strtoupper($sw[2]) ){
+                    return $dt;
+                }
             }
-        }
         /**/
 
         $dt = $this->normalizaData($dt);
@@ -612,9 +614,9 @@ class BancoDeDadosMysql{
         if ($lim < 1) $lim = 30;
 
         $reparam = "SELECT *  FROM (
-                    $param
-                ) PAGINATED
-                LIMIT $lim OFFSET $inicial";
+                $param
+            ) PAGINATED
+            LIMIT $lim OFFSET $inicial";
         return $this->seleciona($reparam);
     }
     public function seleciona($query){
@@ -657,7 +659,7 @@ class BancoDeDadosMysql{
             mysqli_free_result($stmt);
             return $row;
         }
-            return null;
+        return null;
     }
     public function insere ($query){
         return $this->modificarBD($query);
