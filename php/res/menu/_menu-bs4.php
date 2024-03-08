@@ -6,7 +6,7 @@
 */
 ?>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark no-print">
-    <a class="navbar-brand" href="<?php echo $caminho;?>"><i class='fa fa-urbs'></i> <?php echo NOME_APRESENTACAO;?></a>
+    <a class="navbar-brand" href="<?php echo $caminho;?>"><?php echo NOME_APRESENTACAO;?></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

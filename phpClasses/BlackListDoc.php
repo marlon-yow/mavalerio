@@ -1,10 +1,13 @@
 <?php
 /*! ---UTF-8---
 * @Autor MV@URBS https://orcid.org/0000-0003-2770-0624
-* @version 0.0.0.2 [2020-nov-12]
-* @copyleft GPLv3
+* @version 0.0.0.3 [2022-out-07]
+* @copyleft
 */
 
+namespace mavalerio\phpClasses;
+
+if (!class_exists('mavalerio\phpClasses\BlackListDoc')) {
 class BlackListDoc{
 
     var $lista = array();
@@ -78,4 +81,5 @@ class BlackListDoc{
             $this->lista = array();
         }
     }
+}
 }

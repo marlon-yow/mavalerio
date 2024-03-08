@@ -58,7 +58,7 @@ var janelita ={
     mkLink: function(idx,itm){
         return $("<div>")
             .append( $("<a>").attr('onclick','janelita.setItem('+idx+')').attr('href','#')
-                .append(itm[janelita.itemCodigo]+' - '+itm[janelita.itemNome])
+                .append(itm[janelita.itemCodigo]+' - '+itm[janelita.itemNome]).addClass("d-inline-block text-truncate w-100")
             );
     },
 

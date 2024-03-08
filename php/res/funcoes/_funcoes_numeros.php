@@ -56,5 +56,15 @@ function somenteNumeros($value){
 }
 
 function somenteNumerosPontosEVirgulas($value){
-   return preg_replace( '/[^0-9],./', '', $value);
+    return preg_replace('/[^0-9],./', '', $value);
+}
+
+function transformaDiaHoraParaBD($value){
+    $newDate = preg_replace('/T/', ' ', $value);
+    return substr_replace($newDate, ':00', 16, 0);
+}
+
+function transformaDiaHoraParaInput($value){
+    $newDate = preg_replace('/ /', 'T', $value);
+    return substr_replace($newDate, '', 16, 0);
 }

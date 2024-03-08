@@ -1,11 +1,14 @@
 <?php
 /*! ---UTF-8---
-* @version 0.0.0.7 [2023-maio-23]
+* @version 0.0.0.8 [2023-dez-13]
 * @copyleft
 */
-//namespace mavalerio\phpClasses;
 
-if (!class_exists('\FUN')) {
+namespace mavalerio\phpClasses;
+
+use Exception;
+
+if (!class_exists('mavalerio\phpClasses\FUN')) {
     class FUN {
         public $DBG = false;
         public $mensagem = array();
@@ -191,7 +194,7 @@ if (!class_exists('\FUN')) {
          */
         public function removeEspacosDuplicadosEntrePalavras($var) {
             if ($this->DBG) $this->echoDebug(__FILE__, __LINE__, __CLASS__, __FUNCTION__, func_num_args());
-            return preg_replace('/ +/', ' ', $var);
+            return preg_replace('/ +/', ' ', ($var?: ""));
         }
 
 
@@ -205,7 +208,7 @@ if (!class_exists('\FUN')) {
         public function somenteLetras($str, $replaceWith = "") {
             if ($this->DBG) $this->echoDebug(__FILE__, __LINE__, __CLASS__, __FUNCTION__, func_num_args());
             //return preg_replace("[^A-Za-z ]", "", $str);
-            return preg_replace("/[^A-Za-záàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/", $replaceWith, $str);
+            return preg_replace("/[^A-Za-záàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/", $replaceWith, ($str?: ""));
         }
 
 
@@ -219,7 +222,7 @@ if (!class_exists('\FUN')) {
         public function somenteLetrasEEspacos($str, $replaceWith = "") {
             if ($this->DBG) $this->echoDebug(__FILE__, __LINE__, __CLASS__, __FUNCTION__, func_num_args());
             //return preg_replace("[^A-Za-z ]", "", $str);
-            return preg_replace("/[^A-Za-z[:space:]áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/", $replaceWith, $str);
+            return preg_replace("/[^A-Za-z[:space:]áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/", $replaceWith, ($str?: ""));
         }
 
 
@@ -234,7 +237,7 @@ if (!class_exists('\FUN')) {
             if ($this->DBG) $this->echoDebug(__FILE__, __LINE__, __CLASS__, __FUNCTION__, func_num_args());
             if ($this->DBG) echo "FUN->somenteLetrasENumeros($str) <br>\n";
             if (is_null($str)) return '';
-            return preg_replace('/[^a-zA-Z0-9áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/', $replaceWith, $str);
+            return preg_replace('/[^a-zA-Z0-9áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ]/', $replaceWith, ($str?: ""));
         }
 
 
@@ -250,9 +253,9 @@ if (!class_exists('\FUN')) {
             if ($this->DBG) $this->echoDebug(__FILE__, __LINE__, __CLASS__, __FUNCTION__, func_num_args());
             if ($this->DBG) echo "FUN->somenteLetrasNumerosEspacosEChars($str) <br>\n";
             if (is_null($str)) return '';
-            $str = preg_replace('/[\x00-\x1F\x80-\xFF]/', $replaceWith, $str);
+            $str = preg_replace('/[\x00-\x1F\x80-\xFF]/', $replaceWith, ($str?: ""));
             $str = str_replace('\\', $replaceWith, $str);
-            return preg_replace("/[^A-Za-z0-9[:space:]áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ,.-]/", $replaceWith, $str);
+            return preg_replace("/[^A-Za-z0-9[:space:]áàãâÁÀÃÂéèêÉÈÊíÍóõÓÕúÚçÇ,.-]/", $replaceWith, ($str?: ""));
         }
 
 
@@ -266,7 +269,7 @@ if (!class_exists('\FUN')) {
             if ($this->DBG) $this->echoDebug(__FILE__, __LINE__, __CLASS__, __FUNCTION__, func_num_args());
             if ($this->DBG) echo "FUN->tirarAcentos($string) <br>\n";
             if (is_null($string)) return '';
-            return preg_replace(array("/(á|à|ã|â|ä)/", "/(Á|À|Ã|Â|Ä)/", "/(é|è|ê|ë)/", "/(É|È|Ê|Ë)/", "/(í|ì|î|ï)/", "/(Í|Ì|Î|Ï)/", "/(ó|ò|õ|ô|ö)/", "/(Ó|Ò|Õ|Ô|Ö)/", "/(ú|ù|û|ü)/", "/(Ú|Ù|Û|Ü)/", "/(ñ)/", "/(Ñ)/", "/(Ç)/", "/(ç)/"), explode(" ", "a A e E i I o O u U n N C c"), $string);
+            return preg_replace(array("/(á|à|ã|â|ä)/", "/(Á|À|Ã|Â|Ä)/", "/(é|è|ê|ë)/", "/(É|È|Ê|Ë)/", "/(í|ì|î|ï)/", "/(Í|Ì|Î|Ï)/", "/(ó|ò|õ|ô|ö)/", "/(Ó|Ò|Õ|Ô|Ö)/", "/(ú|ù|û|ü)/", "/(Ú|Ù|Û|Ü)/", "/(ñ)/", "/(Ñ)/", "/(Ç)/", "/(ç)/"), explode(" ", "a A e E i I o O u U n N C c"), ($string?: ""));
         }
 
 
@@ -279,9 +282,9 @@ if (!class_exists('\FUN')) {
          */
         public function limpezaStringUtf8($str, $replaceWith = '') {
             if (is_null($str)) return '';
-            $str = preg_replace('/[\x00-\x1F\x80-\xFF]/', $replaceWith, $str);
+            $str = preg_replace('/[\x00-\x1F\x80-\xFF]/', $replaceWith, ($str?: ""));
             $str = str_replace('\\', $replaceWith, $str);
-            $str = preg_replace('/[[:cntrl:]]/', '', $str);
+            $str = preg_replace('/[[:cntrl:]]/', '', ($str?: ""));
             return $str;
         }
 
@@ -471,7 +474,7 @@ if (!class_exists('\FUN')) {
          */
         public function somenteNumeros($value) {
             if ($this->DBG) $this->echoDebug(__FILE__, __LINE__, __CLASS__, __FUNCTION__, func_num_args());
-            $val2 = $value !== null ? preg_replace('/[^0-9]/', '', $value) : '';
+            $val2 = $value !== null ? preg_replace('/[^0-9]/', '', ($value?: "")) : '';
             if ($this->DBG) {
                 echo "Returning $val2 <br>\n";
             }
@@ -487,18 +490,16 @@ if (!class_exists('\FUN')) {
          */
         public function somenteNumerosPontosEVirgulas($value) {
             if ($this->DBG) $this->echoDebug(__FILE__, __LINE__, __CLASS__, __FUNCTION__, func_num_args());
-            return preg_replace('/[^0-9],./', '', $value);
+            return preg_replace('/[^0-9],./', '', ($value ?: ""));
         }
 
 
-        /**
-         * getAmount
-         *  Funcao traz o valor de dinheiro mascarado para float.
+        /** Funcao traz o valor de dinheiro mascarado para float.
          * @param mixed dinheiro com mascara
          * @param int opcional -> quantidade de casas depois do ponto decimal
          * @return float
          * https://stackoverflow.com/questions/5139793/unformat-money-when-parsing-in-php */
-         public function getAmount($money, $casas = 2) {
+        public function getAmount($money, $casas = 2) {
             if (!$money) return (float) 0;
 
             $cleanString = preg_replace('/([^0-9\.,])/i', '', ($money?: ""));
@@ -515,7 +516,7 @@ if (!class_exists('\FUN')) {
         /**
          * secureDecimal
          *  Funcao recebe um valor, valida como decimal e converte para float.
-         * @param mixed decimal desejado
+         * @param mixed valor numerico decimal
          * @param int opcional numero de casas decimais desejadas
          * @return float */
         public function secureDecimal($valor, $casas = 2) {
@@ -680,7 +681,7 @@ if (!class_exists('\FUN')) {
 
             if (!$str) return $failSafe;
 
-            $hora = preg_replace('/[^0-9]/', " ", $str);
+            $hora = preg_replace('/[^0-9]/', " ", ($str?: ""));
             $arr = explode(' ', $hora);
             $h = $arr[0];
             $m = $arr[1];
@@ -822,7 +823,7 @@ if (!class_exists('\FUN')) {
             } else {
                 $failSafe = date('Y-m-d');
 
-                $dt = preg_replace('/[^0-9]/', " ", $str);
+                $dt = preg_replace('/[^0-9]/', " ", ($str?: ""));
                 $arr = explode(' ', $dt);
 
                 //procurar o ano
@@ -1131,7 +1132,7 @@ if (!class_exists('\FUN')) {
             }
 
             $str = join(', ', $ret);
-            $str = preg_replace('/(,(?!.*,))/', ' e', $str);
+            $str = preg_replace('/(,(?!.*,))/', ' e', ($str?: ""));
 
             //debug($str);
 
@@ -1158,7 +1159,43 @@ if (!class_exists('\FUN')) {
                 $dif = $unix2 - $unix1;
             }
             return $this->time_distance($dif);
-        }
+	}
+
+	/**
+	 * nanoTime
+	 * Retorna o tempo em nanosegundos, maior precisao de tempo da linguagem
+	 * @param string $inp tempo inicial para retornoar a diferenca
+	 * @return tempo inicial em nanosegunbdos ou diferenca entre inicio e agora
+	 */
+	public function nanoTime($inp=false){
+	    $fnp = hrtime(1);	
+	    if(!$inp) return $fnp;
+            $tp = $fnp - $inp;
+	    return $this->nanoTime_elapsed($tp);
+	}
+
+	/**
+	 * nanoTime_elapsed
+	 * Retorna o tempo de nanosegundos em leitura humana
+	 * @param string nanosecs
+	 * @return string tempo aproximado em texto
+	 */
+	public function nanoTime_elapsed($nano){
+	    if($nano < 1e+6){
+	        return "$nano nanosegundos";
+	    }
+
+	    $mili = intval($nano / 1e+6);
+
+	    if($mili < 1000){
+                return "$mili milisegundos";
+	    }
+
+	    $secs = intval($mili / 1000);
+
+	    return $this->time_distance($secs);
+	}
+
 
         /**DOCUMENTO**/
 
@@ -1175,7 +1212,7 @@ if (!class_exists('\FUN')) {
             $placa = strtoupper($this->somenteLetrasENumeros($placa));
             if ($this->DBG) echo "FUN->fixPlaca: $placa <br>\n";
             $p1 =  substr($placa, 0, 3);
-            $p1 = preg_replace("/[^A-Z]/", "", $p1);
+            $p1 = preg_replace("/[^A-Z]/", "", ($p1?: ""));
 
             $p2 = substr($placa, 3, 1);
             $p2 = $this->somenteNumeros($p2);
@@ -1200,7 +1237,7 @@ if (!class_exists('\FUN')) {
         public function protectMail($email) {
             if ($this->DBG) $this->echoDebug(__FILE__, __LINE__, __CLASS__, __FUNCTION__, func_num_args());
             $email = $this->tirarAcentos($email);
-            $email = preg_replace("/[^A-Za-z0-9@.#+-_]/", "", $email);
+            $email = preg_replace("/[^A-Za-z0-9@.#+-_]/", "", ($email?: ""));
             $email = substr($email, 0, 255);
 
             return $email;
@@ -1348,7 +1385,7 @@ if (!class_exists('\FUN')) {
             if ($this->DBG) $this->echoDebug(__FILE__, __LINE__, __CLASS__, __FUNCTION__, func_num_args());
             if ($cpf) {
                 if ($DBG) echo $cpf . "<br>";
-                $cpf = preg_replace('/[^0-9]/is', '', $cpf);
+                $cpf = preg_replace('/[^0-9]/is', '', ($cpf?: ""));
                 if ($DBG) echo $cpf . "<br>";
 
                 if (strlen($cpf) != 11) {
@@ -1393,7 +1430,7 @@ if (!class_exists('\FUN')) {
         function validarCNPJ($cnpj) {
             if ($this->DBG) $this->echoDebug(__FILE__, __LINE__, __CLASS__, __FUNCTION__, func_num_args());
 
-            $cnpj = preg_replace('/[^0-9]/', '', (string) $cnpj);
+            $cnpj = preg_replace('/[^0-9]/', '', ($cnpj?: ""));
 
             if ($this->DBG) {
                 echo "somente numeros : $cnpj <br>\n";
@@ -1414,7 +1451,7 @@ if (!class_exists('\FUN')) {
             // Verifica se todos os digitos sao iguais
             if (preg_match('/(\d)\1{13}/', $cnpj)) return false;
 
-            // Valida primeiro di­gito verificador
+            // Valida primeiro digito verificador
             for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++) {
                 $soma += $cnpj[$i] * $j;
                 $j = ($j == 2) ? 9 : $j - 1;
@@ -1636,7 +1673,7 @@ if (!class_exists('\FUN')) {
         public function delTree($dir) {
             $files = array_diff(scandir($dir), array('.', '..'));
             foreach ($files as $file) {
-                (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file");
+                (is_dir("$dir/$file")) ? $this->delTree("$dir/$file") : unlink("$dir/$file");
             }
             return rmdir($dir);
         }
@@ -1660,6 +1697,17 @@ if (!class_exists('\FUN')) {
             } else {
                 return $protect ? json_encode($this->protect($data)) : json_encode($data);
             }
+        }
+
+        //Recebe array e retorna média dos valores;
+        function calcularMediaArray($array) {
+            $valorTotalArray = array_sum($array);
+
+            $quantidadeItensArray = count($array);
+
+            $media = $valorTotalArray / $quantidadeItensArray;
+
+            return $media;
         }
     }
 }

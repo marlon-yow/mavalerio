@@ -1,4 +1,11 @@
 <?php
+/*! ---UTF-8---
+* @Autor MV@URBS https://orcid.org/0000-0003-2770-0624
+* @version 0.0.0.3 [2023-jan-13]
+* @copyleft
+*/
+namespace mavalerio\phpClasses;
+
     include_once VENDOR.'phpMailer-6.3.0/PHPMailer.php';
     include_once VENDOR.'phpMailer-6.3.0/SMTP.php';
     include_once VENDOR.'phpMailer-6.3.0/OAuth.php';
@@ -16,23 +23,38 @@
     if(!RELAY_USER){ echo "RELAY_USER não definido;"; die; }
     if(!RELAY_PASS){ echo "RELAY_PASS não definido;"; die; }
 
+if (!class_exists('mavalerio\phpClasses\EnviadorDeEmailBase')) {
+class EnviadorDeEmailBase{
+    public $DBG = 0;
 
-    $headMail = "<html><head/><body>
+    private function getHeader(){
+        global $path;
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__; if(func_num_args()){ echo "<xmp>" .print_r(func_get_args(),1)."</xmp>";} echo "<br>\n"; }
+
+        $image = $path."imagens/"."fx48.png";
+        $type = pathinfo($image, PATHINFO_EXTENSION);
+        $data = file_get_contents($image);
+        $dataUri = 'data:image/' . $type . ';base64,' . base64_encode($data);
+
+        $headMail = "<html><head/><body>
             <table style='width:90%;border:1px' align='center'>
                 <tr>
                     <td>
                         <a href='".EMAIL_FROM_LINK."'>
-                            <img src='".EMAIL_FROM_LINK."/imagens/fx48.png' border='0' style='width:50px' />
+                            <img src=\"$dataUri\" border='0' style='width:50px' />
                         </a>
                     </td>
-                    <td>
-                        <h2>".NOME_APRESENTACAO."</h2>
-                    </td>
-                <tr>
+                    <td><h2>".NOME_APRESENTACAO."</h2></td>
+                </tr>
                 <tr>
                     <td colspan='2'>";
+        if($this->DBG){ echo $headMail;}
+        return $headMail;
+    }
 
-    $footeMail = "
+    private function getFooter(){
+        if($this->DBG){ echo __FILE__.":".__LINE__." <br>\n".__CLASS__."->".__FUNCTION__; if(func_num_args()){ echo "<xmp>" .print_r(func_get_args(),1)."</xmp>";} echo "<br>\n"; }
+        $footeMail = "
                         <br>Acesse o sistema aqui: <a href='".EMAIL_FROM_LINK."'>".EMAIL_FROM_NAME."</a>
                         <br><br>
                     </td>
@@ -41,20 +63,20 @@
                     <td colspan='2'>
                         Esta é uma mensagem automática, favor não responder.
                         <br>
-                        <i>Você definiu esse email para ser seu email de contato do sistema.</i>
-                        <br>
                         Mensagem enviada em ".date('d/m/Y H:i').".
                     </td>
                 </tr>
           </table>
        </body></html>";
+       if($this->DBG){ echo $footeMail;}
+       return $footeMail;
+   }
 
-    function _enviaEmail($destinatario,$titulo,$corpo,$anexo=null){
-        global $headMail, $footeMail;
+    public function enviaEmail($destinatario,$titulo,$corpo,$anexo=null){
 
         $mail = new PHPMailer();
         $mail->IsSMTP(); // mandar via SMTP
-        $mail->SMTPDebug = 0;
+        $mail->SMTPDebug = $this->DBG;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Host = RELAY_HOST; //"smtp.gmail.com";
@@ -87,6 +109,9 @@
 
         $mail->Subject = NOME_APRESENTACAO." - $titulo";
 
+        $headMail = $this->getHeader();
+        $footeMail = $this->getFooter();
+
         //$mail->Body = $headMail.$corpo.$footeMail;
         $mail->msgHTML($headMail.$corpo.$footeMail);
 
@@ -105,9 +130,8 @@
         return $sent;
     }
 
-    function emailTeste($nome,$email){
-        debug("$nome,$email");
-        global $appname;
+    public function emailTeste($nome,$email){
+        debug("$nome,$email",false,false);
 
         $destinatario = array(
             'EMAIL' => $email,
@@ -120,10 +144,12 @@
                     <br>
                     Olá!<br>
                     Você definiu esse email: $email <br>
-                    para ser seu email de contato do sistema $appname.<br>
+                    para ser seu email de contato do sistema ".NOME_APRESENTACAO.".<br>
                     <br>
                     <b>Email de teste</b>
                     ";
         //debug($destinatario);
         return _enviaEmail($destinatario,$titulo,$corpo);
     }
+}
+}

@@ -1,6 +1,6 @@
 /*! ---UTF-8---
 * @Autor Mavalerio https://orcid.org/0000-0003-2770-0624
-* @version 0.0.0.6 [2021-set-03]
+* @version 0.0.0.7 [2023-jan-26]
 * @copyleft GPLv3
 */
 
@@ -8,22 +8,36 @@
  * Lib que trata as datas no padrão americano AAAA-MM-DD
  */
 class DataEn extends Date {
+    /* **************
+    == VARIAVEIS ==
+    ************** */
+
     static dayNames = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
     static abbrDayNames = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
     static monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
     static abbrMonthNames = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
     static ms_per_day = 86400000;// 1000 * 60 * 60 * 24;
 
-    /*PROTO*/
+
+    /* **************
+    == Funcoes para funcoes ==
+    ************** */
+
+    /**
+    * Funcao que retorna a data atual (yyyy-mm-dd)
+    * @returns mixed 
+    */
     getDataText(){
         return this.getFullYear() + '-' + DataEn.pad((this.getMonth()+1),2) + '-' + DataEn.pad(this.getDate(),2);
     };
+
+    /**
+    * Funcao que retorna a hora atual (hh:mm:ss)
+    * @returns mixed horaAtual
+    */
     getTimeText(){
         return DataEn.pad(this.getHours(),2)+":"+ DataEn.pad(this.getMinutes(),2) +":"+ DataEn.pad(this.getSeconds(),2);
     };
-    getDia(){ return pad(this.getDate(),2); };
-    getMes(){ return pad((this.getMonth()+1),2); };
-    getAno(){ return this.getUTCFullYear(); };
 
     /**
     *    Funcao preenche com zeros a esquerda o numero
@@ -39,6 +53,41 @@ class DataEn extends Date {
         return str;
     }
 
+    /*
+    *
+    *  @parameter javascript Date object
+    *  @parameter javascript Date object
+    *  @returns int com a diferenca a-b
+    */
+    static dateDiffInDays(a, b) {
+        // Discard the time and time-zone information.
+        var utc1 = DataEn.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+        var utc2 = DataEn.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+        return Math.floor((utc1 - utc2) / DataEn.ms_per_day);
+    }
+
+    /* **************
+    == Funcoes para usar ==
+    ************** */
+
+    /**
+    * Funcao que retorna dia atual ()
+    * @returns mixed 
+    */
+    getDia() { return DataEn.pad(this.getDate(),2); };
+
+    /**
+    * Funcao que retorna mes atual ()
+    * @returns mixed 
+    */
+    getMes() { return DataEn.pad((this.getMonth()+1),2); };
+
+    /**
+    * Funcao que retorna ano atual ()
+    * @returns mixed 
+    */
+    getAno(){ return this.getUTCFullYear(); };
+
     /**
     * Funcao que retorna a hora atual (hh:mm:ss)
     * @param boolean true para remover segundos (:ss)
@@ -47,7 +96,7 @@ class DataEn extends Date {
     static getHora(half){
         var d = new DataEn;
         if(!half){ return d.getTimeText(); }
-        return d.getTimeText().toString().substr(0,5);
+        return d.getTimeText().toString().substring(0,5);
     };
 
     /**
@@ -269,7 +318,8 @@ class DataEn extends Date {
     *    @parameter mixed dd/mm/yyyy
     *    @returns boolean (true para dias uteis, false para fds e invalidos)
     */
-    static diaUtil(d){
+    static diaUtil(d){ return DateEn.isDiaUtil(d);}//deprecated
+    static isDiaUtil(d){
         var e = '  ';
         e = this.getDiaSemana(d);
         var du = ['Se','Te','Qu'];
@@ -278,19 +328,6 @@ class DataEn extends Date {
         }else{
             return false;
         }
-    }
-
-    /*
-    *
-    *  @parameter javascript Date object
-    *  @parameter javascript Date object
-    *  @returns int com a diferenca a-b
-    */
-    static dateDiffInDays(a, b) {
-      // Discard the time and time-zone information.
-      var utc1 = DataEn.UTC(a.getFullYear(), a.getMonth(), a.getDate());
-      var utc2 = DataEn.UTC(b.getFullYear(), b.getMonth(), b.getDate());
-      return Math.floor((utc1 - utc2) / DataEn.ms_per_day);
     }
 
     /**
@@ -304,6 +341,38 @@ class DataEn extends Date {
         var b = this.strToData(d2);
         var difference = this.dateDiffInDays(a, b);
         return difference;
+    }
+
+    /**
+    *    Funcao para saber diferenca de horas
+    *    @parameter mixed hh:mi:ss
+    *    @parameter mixed hh:mi:ss
+    *    @returns mixed hh:mi:ss com a diferenca h1-h2
+    */
+    static diffDeHoras(h1, h2) {
+        var hh1 = h1.split(':');
+        var hh2 = h2.split(':');
+
+        var hh = parseInt(hh1[0]) - parseInt(hh2[0]);
+        var mm = parseInt(hh1[1]) - parseInt(hh2[1]);
+        var ss = parseInt(hh1[2]) - parseInt(hh2[2]);
+
+        if (ss < 0) {
+            ss = ss + 60;
+            mm = mm - 1;
+        }
+
+        if (mm < 0) {
+            mm = mm + 60;
+            hh = hh - 1;
+        }
+
+        if (hh < 0) {
+            console.warn('ERRO: diffDeHoras(h1,h2)', h1, h2, 'failsafe 00:00:01');
+            return '00:00:01';
+        }
+
+        return this.pad(hh, 2) + ':' + this.pad(mm, 2) + ':' + this.pad(ss, 2);
     }
 
     /**
@@ -322,7 +391,8 @@ class DataEn extends Date {
      * @param  {[type]} dt [description]
      * @return {[type]}    [description]
      */
-    static getQuantoTempoPassou(dt){
+    static getQuantoTempoPassou(dt){ return DataEn.dataEmSegundos(dt);} //deprecated
+    static dataEmSegundos(dt){
         /* em segundos */
         dt = this.normalizaData(dt);
         return parseInt( (new Date()-this.strToData(dt))/1000 );
@@ -362,33 +432,12 @@ class DataEn extends Date {
 
         return 'a ' + ret.join(' ');
     }
-
-    static diffDeHoras(h1,h2){
-        var hh1 = h1.split(':');
-        var hh2 = h2.split(':');
-
-        var hh = parseInt(hh1[0]) - parseInt(hh2[0]);
-        var mm = parseInt(hh1[1]) - parseInt(hh2[1]);
-        var ss = parseInt(hh1[2]) - parseInt(hh2[2]);
-
-        if(ss < 0){
-            ss = ss + 60;
-            mm = mm -1;
-        }
-
-        if(mm < 0){
-            mm = mm + 60;
-            hh = hh -1;
-        }
-
-        if(hh<0){
-            console.warn('ERRO: diffDeHoras(h1,h2)',h1,h2,'failsafe 00:00:01');
-            return '00:00:01';
-        }
-
-        return this.pad(hh,2)+':'+this.pad(mm,2)+':'+this.pad(ss,2);
-    }
-
+    
+    /**
+    *    Funcao para mostrar a data em padrão Brasileiro
+    *    @parameter mixed data+hora    
+    *    @returns mixed dd/mm/yyyy hh:mi:ss
+    */
     static dataPadraoBR(dt){
         dt = this.normalizaData(dt);
         if(!dt) return null;
@@ -403,3 +452,9 @@ class DataEn extends Date {
         return arr.join('/')+(hora ? " "+hora : '');
     }
 }
+
+/*CHANGELOG*/
+/*2023-01-26
+    diaUtil renomeada para isDiaUtil
+    getQuantoTempoPassou renomeada para dataEmSegundos
+*/
