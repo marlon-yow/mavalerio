@@ -78,12 +78,6 @@
         dev show all
         */
     }
-<<<<<<< HEAD
-
-    if(defined('LIB_BS')){
-        if(file_exists(__DIR__.'/menu/_menu-bs'.LIB_BS.'.php')){
-            require_once (__DIR__.'/menu/_menu-bs'.LIB_BS.'.php');
-=======
 if(defined("MENU_NOVO") and MENU_NOVO == 1){
         require_once (__DIR__.'/menu/_menu_novo.php');
 
@@ -91,7 +85,6 @@ if(defined("MENU_NOVO") and MENU_NOVO == 1){
         if(file_exists(__DIR__.'/menu/_menu-bs'.LIB_BS.'.php')){
             require_once (__DIR__.'/menu/_menu-bs'.LIB_BS.'.php');
 
->>>>>>> 61864a09ada59de457a1b5d9b798e99232166a0d
         }else{
             echo "Arquivo não encontrado: ".__DIR__.'/menu/_menu-bs'.LIB_BS.'.php';
             echo __FILE__.":".__LINE__;

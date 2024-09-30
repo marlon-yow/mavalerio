@@ -139,8 +139,6 @@ class Data{
 
         return $dt;
     }
-<<<<<<< HEAD
-=======
 
     function addDmaisUteis($dtEnUs, $dmais){
         for ($daysToAdd = $dmais; $daysToAdd > 0; $daysToAdd--) {
@@ -149,6 +147,5 @@ class Data{
 
         return $dtEnUs;
     }
->>>>>>> 61864a09ada59de457a1b5d9b798e99232166a0d
 }
 }

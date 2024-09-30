@@ -1159,9 +1159,6 @@ if (!class_exists('mavalerio\phpClasses\FUN')) {
                 $dif = $unix2 - $unix1;
             }
             return $this->time_distance($dif);
-<<<<<<< HEAD
-        }
-=======
 	}
 
 	/**
@@ -1199,7 +1196,6 @@ if (!class_exists('mavalerio\phpClasses\FUN')) {
 	    return $this->time_distance($secs);
 	}
 
->>>>>>> 61864a09ada59de457a1b5d9b798e99232166a0d
 
         /**DOCUMENTO**/
 
@@ -1455,11 +1451,7 @@ if (!class_exists('mavalerio\phpClasses\FUN')) {
             // Verifica se todos os digitos sao iguais
             if (preg_match('/(\d)\1{13}/', $cnpj)) return false;
 
-<<<<<<< HEAD
-            // Valida primeiro di­gito verificador
-=======
             // Valida primeiro digito verificador
->>>>>>> 61864a09ada59de457a1b5d9b798e99232166a0d
             for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++) {
                 $soma += $cnpj[$i] * $j;
                 $j = ($j == 2) ? 9 : $j - 1;
