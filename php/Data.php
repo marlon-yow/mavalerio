@@ -138,5 +138,13 @@ class Data{
 
         return $dt;
     }
+
+    function addDmaisUteis($dtEnUs, $dmais){
+        for ($daysToAdd = $dmais; $daysToAdd > 0; $daysToAdd--) {
+            $dtEnUs = $this->proximoDiaUtil($dtEnUs, true);
+        }
+
+        return $dtEnUs;
+    }
 }
 }

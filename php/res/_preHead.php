@@ -66,13 +66,13 @@ $libCacheUpdate = date('dmH');
         <!-- FONT AWESOME -->
         <?php if(LIB_FA == 4){ ?>
             <link href="<?php echo $caminho;?>/vendor/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <?php } if(LIB_FA == 5){ ?>
+        <?php }else if(LIB_FA == 5){ ?>
             <link href="<?php echo $caminho;?>/vendor/fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
             <script src='<?php echo $caminho;?>/vendor/fontawesome-free-5.15.4-web/js/all.js' type='text/javascript'></script>
-        <?php } if(LIB_FA == 6){ ?>
+        <?php }else if(LIB_FA == 6){ ?>
             <link href="<?php echo $caminho;?>/vendor/fontawesome-free-6.1.2-web/css/all.css" rel="stylesheet">
             <script src='<?php echo $caminho;?>/vendor/fontawesome-free-6.1.2-web/js/all.js' type='text/javascript'></script>
-        <?php } if(LIB_FA == 6.6){ ?>
+        <?php }else if(LIB_FA == 6.6){ ?>
             <link href="<?php echo $caminho;?>/vendor/fontawesome-free-6.1.2-web/css/all.css" rel="stylesheet">
             <script src='<?php echo $caminho;?>/vendor/fontawesome-free-6.1.2-web/js/all.js' type='text/javascript'></script>
         <?php } ?>

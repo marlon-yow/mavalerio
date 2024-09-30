@@ -717,7 +717,7 @@ if (!class_exists('\FUN')) {
          */
         public function validarData($dt) {
             if ($this->DBG) $this->echoDebug(__FILE__, __LINE__, __CLASS__, __FUNCTION__, func_num_args());
-
+            if(!$dt) return false;
             $_arr = explode(" ", $dt);
             if ($this->DBG) {
                 echo "FUN->validarData: explode: " . print_r($_arr, 1) . " <br>\n";

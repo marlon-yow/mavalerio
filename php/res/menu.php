@@ -1,7 +1,7 @@
 <?php
 /*!
-* @Autor MV https://orcid.org/0000-0003-2770-0624
-* @version 0.0.0.6 [2022-fev-05]
+* @GREVOLYZADO
+* @version 0.0.1.0 [2023-nov-06]
 * @copyleft GPLv3
 */
     if(file_exists(MAVALERIO_ALT_CONFIG_FOLDER.'_menu.php')) require_once(MAVALERIO_ALT_CONFIG_FOLDER.'_menu.php');
@@ -37,9 +37,9 @@
         if( $print ){
             if(defined('LIB_BS') and LIB_BS == 4){
                 if(isset($itemMenu['class'])){
-                    $itemMenu['class'] .= ' dropdown-item';
+                    $itemMenu['class'] .= '';
                 }else if(is_array($itemMenu)){
-                    $itemMenu['class'] = ' dropdown-item';
+                    $itemMenu['class'] = '';
                 }else{
                     echo "</div></div></nav>";
                     echo "<h1>Erro Configuração de Menu</h1>";
@@ -49,16 +49,18 @@
 
             $titulo = (isset($itemMenu['titulo']) ? $itemMenu['titulo'] : '');
             $inside = "";
+            $class = "";
             $icon = "";
-            if(isset($itemMenu['class'])){   $inside .= "class='".$itemMenu['class']."'"; }
+            if(isset($itemMenu['class'])){   $class .= "class='".$itemMenu['class']."'"; }
             if(isset($itemMenu['onclick'])){ $inside .= "onclick=\"".$itemMenu['onclick']."\""; }
             if(isset($itemMenu['href'])){    $inside .= "href='".$itemMenu['href']."'"; }
             if(isset($itemMenu['target'])){  $inside .= "target='".$itemMenu['target']."'"; }
+        if(isset($itemMenu['id'])){    $id   .= "id='".$itemMenu['id']."'"; }
             if(isset($itemMenu['icon'])){    $icon   .= "<i class='".$itemMenu['icon']."'></i> "; }
 
-            return "<a $inside >$icon $titulo</a>";
+            return "<a $inside><div $id $class> $icon $titulo </div></a>";
         }else{
-            return 0;
+            return "<div></div>";
         }
     }
 
@@ -76,10 +78,20 @@
         dev show all
         */
     }
+<<<<<<< HEAD
 
     if(defined('LIB_BS')){
         if(file_exists(__DIR__.'/menu/_menu-bs'.LIB_BS.'.php')){
             require_once (__DIR__.'/menu/_menu-bs'.LIB_BS.'.php');
+=======
+if(defined("MENU_NOVO") and MENU_NOVO == 1){
+        require_once (__DIR__.'/menu/_menu_novo.php');
+
+    } else if(defined('LIB_BS')){
+        if(file_exists(__DIR__.'/menu/_menu-bs'.LIB_BS.'.php')){
+            require_once (__DIR__.'/menu/_menu-bs'.LIB_BS.'.php');
+
+>>>>>>> 61864a09ada59de457a1b5d9b798e99232166a0d
         }else{
             echo "Arquivo não encontrado: ".__DIR__.'/menu/_menu-bs'.LIB_BS.'.php';
             echo __FILE__.":".__LINE__;

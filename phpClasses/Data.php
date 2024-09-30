@@ -82,7 +82,7 @@ class Data{
     public function proximoDiaUtil($dtEnUs,$addOneDay=false){
         $repete = false;
 
-        $date = new \DateTime($dtEnUs);
+        $date = new \DateTime(($dtEnUs ?: 'now'));
         if($addOneDay) $date = date_add($date,new \DateInterval('P1D'));
         $d = $this->diaUtil($date);
         $f = $this->isNotFeriado($date);
@@ -139,5 +139,16 @@ class Data{
 
         return $dt;
     }
+<<<<<<< HEAD
+=======
+
+    function addDmaisUteis($dtEnUs, $dmais){
+        for ($daysToAdd = $dmais; $daysToAdd > 0; $daysToAdd--) {
+            $dtEnUs = $this->proximoDiaUtil($dtEnUs, true);
+        }
+
+        return $dtEnUs;
+    }
+>>>>>>> 61864a09ada59de457a1b5d9b798e99232166a0d
 }
 }

@@ -1,6 +1,6 @@
 <?php
 /*! ---UTF-8---
-* @version 0.0.0.7 [2023-maio-23]
+* @version 0.0.0.8 [2023-dez-13]
 * @copyleft
 */
 
@@ -1159,7 +1159,47 @@ if (!class_exists('mavalerio\phpClasses\FUN')) {
                 $dif = $unix2 - $unix1;
             }
             return $this->time_distance($dif);
+<<<<<<< HEAD
         }
+=======
+	}
+
+	/**
+	 * nanoTime
+	 * Retorna o tempo em nanosegundos, maior precisao de tempo da linguagem
+	 * @param string $inp tempo inicial para retornoar a diferenca
+	 * @return tempo inicial em nanosegunbdos ou diferenca entre inicio e agora
+	 */
+	public function nanoTime($inp=false){
+	    $fnp = hrtime(1);	
+	    if(!$inp) return $fnp;
+            $tp = $fnp - $inp;
+	    return $this->nanoTime_elapsed($tp);
+	}
+
+	/**
+	 * nanoTime_elapsed
+	 * Retorna o tempo de nanosegundos em leitura humana
+	 * @param string nanosecs
+	 * @return string tempo aproximado em texto
+	 */
+	public function nanoTime_elapsed($nano){
+	    if($nano < 1e+6){
+	        return "$nano nanosegundos";
+	    }
+
+	    $mili = intval($nano / 1e+6);
+
+	    if($mili < 1000){
+                return "$mili milisegundos";
+	    }
+
+	    $secs = intval($mili / 1000);
+
+	    return $this->time_distance($secs);
+	}
+
+>>>>>>> 61864a09ada59de457a1b5d9b798e99232166a0d
 
         /**DOCUMENTO**/
 
@@ -1415,7 +1455,11 @@ if (!class_exists('mavalerio\phpClasses\FUN')) {
             // Verifica se todos os digitos sao iguais
             if (preg_match('/(\d)\1{13}/', $cnpj)) return false;
 
+<<<<<<< HEAD
             // Valida primeiro di­gito verificador
+=======
+            // Valida primeiro digito verificador
+>>>>>>> 61864a09ada59de457a1b5d9b798e99232166a0d
             for ($i = 0, $j = 5, $soma = 0; $i < 12; $i++) {
                 $soma += $cnpj[$i] * $j;
                 $j = ($j == 2) ? 9 : $j - 1;

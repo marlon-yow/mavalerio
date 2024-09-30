@@ -17,13 +17,20 @@ function debug($var, $die= true, $trace = true, $type = true){
 
 
 function myErrorHandler($errno, $errstr, $errfile, $errline){
-    //echo "Erro Numero: ". $errno; return false;
     if(substr($errstr,0,18) == "Undefined variable") return true;
     if(substr($errstr,0,19) == "Undefined array key") return true;
     if(substr($errstr,0,51) == "Trying to access array offset on value of type null") return true;
     if(substr($errstr,0,23) == "gzinflate(): data error") return true;
+    if(substr($errstr,0,40) == 'Use of "self" in callables is deprecated') return true;
+    if(substr($errstr,0,39) == 'Creation of dynamic property GuzzleHttp') return true;
+
+
+    // echo "Erro Numero: ". $errno; return false;
+    // echo "Erro Numero: ". $errstr; return false;
 
     return false;
 }
 
-$old_error_handler = set_error_handler("myErrorHandler",E_WARNING);
+
+$old_error_handler = set_error_handler("myErrorHandler",E_ALL);
+// $old_error_handler = set_error_handler("myErrorHandler",E_DEPRECATED);
