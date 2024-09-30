@@ -21,7 +21,7 @@ $libCacheUpdate = date('dmH');
     <meta property="og:image" itemprop="image primaryImageOfPage" content="<?php echo $caminho;?>favicon.png">
 
     <!-- JQuery -->
-    <?php if(defined('LIB_JQUERY') and LIB_JQUERY == 3){ ?><script src='<?php echo $caminho;?>/vendor/jquery/js/jquery-3.4.1.min.js' type='text/javascript'></script><?php } ?>
+    <?php if(defined('LIB_JQUERY') and LIB_JQUERY == 3){ ?><script src='<?php echo $caminho;?>/vendor/jquery/js/jquery-3.7.1.min.js' type='text/javascript'></script><?php } ?>
 
     <?php if( defined('LIB_BS') ){ ?>
         <!-- bootstrap 3 ou 4 -->
@@ -66,10 +66,13 @@ $libCacheUpdate = date('dmH');
         <!-- FONT AWESOME -->
         <?php if(LIB_FA == 4){ ?>
             <link href="<?php echo $caminho;?>/vendor/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <?php }else if(LIB_FA == 5){ ?>
+        <?php } if(LIB_FA == 5){ ?>
             <link href="<?php echo $caminho;?>/vendor/fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
             <script src='<?php echo $caminho;?>/vendor/fontawesome-free-5.15.4-web/js/all.js' type='text/javascript'></script>
-        <?php }else if(LIB_FA == 6){ ?>
+        <?php } if(LIB_FA == 6){ ?>
+            <link href="<?php echo $caminho;?>/vendor/fontawesome-free-6.1.2-web/css/all.css" rel="stylesheet">
+            <script src='<?php echo $caminho;?>/vendor/fontawesome-free-6.1.2-web/js/all.js' type='text/javascript'></script>
+        <?php } if(LIB_FA == 6.6){ ?>
             <link href="<?php echo $caminho;?>/vendor/fontawesome-free-6.1.2-web/css/all.css" rel="stylesheet">
             <script src='<?php echo $caminho;?>/vendor/fontawesome-free-6.1.2-web/js/all.js' type='text/javascript'></script>
         <?php } ?>
